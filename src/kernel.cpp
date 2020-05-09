@@ -342,7 +342,7 @@ bool CheckStakeKernelHash(unsigned int nBits, const CBlock& blockFrom, unsigned 
 	int nStakeModifierHeight = 0;
 	int64 nStakeModifierTime = 0;
 	if (!GetKernelStakeModifier(blockFrom.GetHash(), nStakeModifier, nStakeModifierHeight, nStakeModifierTime, fPrintProofOfStake))
-		return false;
+		return error("::CheckStakeKernelHash() : GetKernelStakeModifier() failed");
 		
 	//create data stream once instead of repeating it in the loop
 	CDataStream ss(SER_GETHASH, 0);
@@ -350,9 +350,12 @@ bool CheckStakeKernelHash(unsigned int nBits, const CBlock& blockFrom, unsigned 
 	
 	//if wallet is simply checking to make sure a hash is valid
 	if(fCheck)
-	{
+	{	if (fDebug)
+		    printf("nStakeModifier: %llu, nStakeModifier hex: %016llx \n", nStakeModifier, nStakeModifier);
 		hashProofOfStake = stakeHash(nTimeTx, nTxPrevTime, ss, prevout.n, nTxPrevOffset, nTimeBlockFrom); 
-		return stakeTargetHit(hashProofOfStake, (int64)nTimeTx - nTxPrevTime, nValueIn, bnTargetPerCoinDay, bnCoinWeight);
+		    if (fDebug) 
+		    	printf("hashProofOfStake: %s \n", hashProofOfStake.ToString().c_str());
+	return stakeTargetHit(hashProofOfStake, (int64)nTimeTx - nTxPrevTime, nValueIn, bnTargetPerCoinDay, bnCoinWeight);
 	}
 	
     bool fSuccess = false;

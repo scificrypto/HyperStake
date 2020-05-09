@@ -280,13 +280,13 @@ bool CTransaction::ReadFromDisk(CTxDB& txdb, COutPoint prevout, CTxIndex& txinde
 {
     SetNull();
     if (!txdb.ReadTxIndex(prevout.hash, txindexRet))
-        return false;
+        return error("CTransaction::ReadFromDisk() : ReadTxIndex() failed");
     if (!ReadFromDisk(txindexRet.pos))
-        return false;
+        return error("CTransaction::ReadFromDisk() : ReadFromDisk() failed");
     if (prevout.n >= vout.size())
     {
         SetNull();
-        return false;
+        return error("CTransaction::ReadFromDisk() : Prevout index out of range");
     }
     return true;
 }
@@ -2363,9 +2363,12 @@ bool ProcessBlock(CNode* pfrom, CBlock* pblock, std::string& strErr)
 	}
 
     // If this block is before the last hardened checkpoint, then do not perform complete signature checks
-    bool fFullCheck = true;
-    if (mapBlockIndex.count(pblock->hashPrevBlock))
-        fFullCheck = mapBlockIndex.at(pblock->hashPrevBlock)->nHeight > Checkpoints::GetTotalBlocksEstimate();
+    // iantunc - HyperStake: This causes an incorrect computation of stake modifiers. Temporary commented for a future decision 
+
+	bool fFullCheck = true;
+
+    // if (mapBlockIndex.count(pblock->hashPrevBlock))
+    //    fFullCheck = mapBlockIndex.at(pblock->hashPrevBlock)->nHeight > Checkpoints::GetTotalBlocksEstimate();
 
     // Preliminary checks
     if (!pblock->CheckBlock())
@@ -2377,6 +2380,8 @@ bool ProcessBlock(CNode* pfrom, CBlock* pblock, std::string& strErr)
         uint256 hashProofOfStake = 0;
         if (fFullCheck && !CheckProofOfStake(pblock->vtx[1], pblock->nBits, hashProofOfStake)) {
 			printf("WARNING: ProcessBlock(): check proof-of-stake failed for block %s\n", hash.ToString().c_str());
+			if (fDebug)
+                            pblock->print();
 			return false;
         }
 
