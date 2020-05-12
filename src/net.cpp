@@ -61,7 +61,7 @@ static CNode* pnodeLocalHost = NULL;
 CAddress addrSeenByPeer(CService("0.0.0.0", 0), nLocalServices);
 uint64 nLocalHostNonce = 0;
 boost::array<int, THREAD_MAX> vnThreadsRunning;
-static std::vector<SOCKET> vhListenSocket;
+static std::vector<N_SOCKET> vhListenSocket;
 CAddrMan addrman;
 
 vector<CNode*> vNodes;
@@ -143,7 +143,7 @@ CAddress GetLocalAddress(const CNetAddr *paddrPeer)
     return ret;
 }
 
-bool RecvLine(SOCKET hSocket, string& strLine)
+bool RecvLine(N_SOCKET hSocket, string& strLine)
 {
     strLine = "";
     while (true)
@@ -308,7 +308,7 @@ bool IsReachable(const CNetAddr& addr)
 
 bool GetMyExternalIP2(const CService& addrConnect, const char* pszGet, const char* pszKeyword, CNetAddr& ipRet)
 {
-    SOCKET hSocket;
+    N_SOCKET hSocket;
     if (!ConnectSocket(addrConnect, hSocket))
         return error("GetMyExternalIP() : connection to %s failed", addrConnect.ToString().c_str());
 
@@ -323,7 +323,7 @@ bool GetMyExternalIP2(const CService& addrConnect, const char* pszGet, const cha
             {
                 if (!RecvLine(hSocket, strLine))
                 {
-                    closesocket(hSocket);
+                    close_socket(hSocket);
                     return false;
                 }
                 if (pszKeyword == NULL)
@@ -334,7 +334,7 @@ bool GetMyExternalIP2(const CService& addrConnect, const char* pszGet, const cha
                     break;
                 }
             }
-            closesocket(hSocket);
+            close_socket(hSocket);
             if (strLine.find("<") != string::npos)
                 strLine = strLine.substr(0, strLine.find("<"));
             strLine = strLine.substr(strspn(strLine.c_str(), " \t\n\r"));
@@ -348,7 +348,7 @@ bool GetMyExternalIP2(const CService& addrConnect, const char* pszGet, const cha
             return true;
         }
     }
-    closesocket(hSocket);
+    close_socket(hSocket);
     return error("GetMyExternalIP() : connection closed");
 }
 
@@ -477,7 +477,7 @@ CNode* ConnectNode(CAddress addrConnect, const char *pszDest, int64 nTimeout)
         pszDest ? 0 : (double)(GetAdjustedTime() - addrConnect.nTime)/3600.0);
 
     // Connect
-    SOCKET hSocket;
+    N_SOCKET hSocket;
     if (pszDest ? ConnectSocketByName(addrConnect, hSocket, pszDest, GetDefaultPort()) : ConnectSocket(addrConnect, hSocket))
     {
         addrman.Attempt(addrConnect);
@@ -522,7 +522,7 @@ void CNode::CloseSocketDisconnect()
     if (hSocket != INVALID_SOCKET)
     {
         printf("disconnecting node %s\n", addrName.c_str());
-        closesocket(hSocket);
+        close_socket(hSocket);
         hSocket = INVALID_SOCKET;
         
 		// in case this fails, we'll empty the recv buffer when the CNode is deleted
@@ -788,10 +788,10 @@ void ThreadSocketHandler2(void* parg)
         FD_ZERO(&fdsetRecv);
         FD_ZERO(&fdsetSend);
         FD_ZERO(&fdsetError);
-        SOCKET hSocketMax = 0;
+        N_SOCKET hSocketMax = 0;
         bool have_fds = false;
 
-        BOOST_FOREACH(SOCKET hListenSocket, vhListenSocket) {
+        BOOST_FOREACH(N_SOCKET hListenSocket, vhListenSocket) {
             FD_SET(hListenSocket, &fdsetRecv);
             hSocketMax = max(hSocketMax, hListenSocket);
             have_fds = true;
@@ -838,7 +838,7 @@ void ThreadSocketHandler2(void* parg)
         //
         // Accept new connections
         //
-        BOOST_FOREACH(SOCKET hListenSocket, vhListenSocket)
+        BOOST_FOREACH(N_SOCKET hListenSocket, vhListenSocket)
         if (hListenSocket != INVALID_SOCKET && FD_ISSET(hListenSocket, &fdsetRecv))
         {
 #ifdef USE_IPV6
@@ -847,7 +847,7 @@ void ThreadSocketHandler2(void* parg)
             struct sockaddr sockaddr;
 #endif
             socklen_t len = sizeof(sockaddr);
-            SOCKET hSocket = accept(hListenSocket, (struct sockaddr*)&sockaddr, &len);
+            N_SOCKET hSocket = accept(hListenSocket, (struct sockaddr*)&sockaddr, &len);
             CAddress addr;
             int nInbound = 0;
 
@@ -870,12 +870,12 @@ void ThreadSocketHandler2(void* parg)
             }
             else if (nInbound >= GetArg("-maxconnections", 125) - MAX_OUTBOUND_CONNECTIONS)
             {
-                closesocket(hSocket);
+                close_socket(hSocket);
             }
             else if (CNode::IsBanned(addr))
             {
                 printf("connection from %s dropped (banned)\n", addr.ToString().c_str());
-                closesocket(hSocket);
+                close_socket(hSocket);
             }
             else
             {
@@ -1739,7 +1739,7 @@ bool BindListenPort(const CService &addrBind, string& strError)
         return false;
     }
 
-    SOCKET hListenSocket = socket(((struct sockaddr*)&sockaddr)->sa_family, SOCK_STREAM, IPPROTO_TCP);
+    N_SOCKET hListenSocket = socket(((struct sockaddr*)&sockaddr)->sa_family, SOCK_STREAM, IPPROTO_TCP);
     if (hListenSocket == INVALID_SOCKET)
     {
         strError = strprintf("Error: Couldn't open socket for incoming connections (socket returned error %d)", WSAGetLastError());
@@ -1986,11 +1986,11 @@ public:
         // Close sockets
         BOOST_FOREACH(CNode* pnode, vNodes)
             if (pnode->hSocket != INVALID_SOCKET)
-                closesocket(pnode->hSocket);
-        BOOST_FOREACH(SOCKET hListenSocket, vhListenSocket)
+                close_socket(pnode->hSocket);
+        BOOST_FOREACH(N_SOCKET hListenSocket, vhListenSocket)
             if (hListenSocket != INVALID_SOCKET)
-                if (closesocket(hListenSocket) == SOCKET_ERROR)
-                    printf("closesocket(hListenSocket) failed with error %d\n", WSAGetLastError());
+                if (close_socket(hListenSocket) == SOCKET_ERROR)
+                    printf("close_socket(hListenSocket) failed with error %d\n", WSAGetLastError());
 
 #ifdef WIN32
         // Shutdown Windows Sockets
