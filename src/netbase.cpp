@@ -174,12 +174,12 @@ bool LookupNumeric(const char *pszName, CService& addr, int portDefault)
     return Lookup(pszName, addr, portDefault, false);
 }
 
-bool static Socks4(const CService &addrDest, SOCKET& hSocket)
+bool static Socks4(const CService &addrDest, N_SOCKET& hSocket)
 {
     printf("SOCKS4 connecting %s\n", addrDest.ToString().c_str());
     if (!addrDest.IsIPv4())
     {
-        closesocket(hSocket);
+        close_socket(hSocket);
         return error("Proxy destination is not IPv4");
     }
     char pszSocks4IP[] = "\4\1\0\0\0\0\0\0user";
@@ -187,7 +187,7 @@ bool static Socks4(const CService &addrDest, SOCKET& hSocket)
     socklen_t len = sizeof(addr);
     if (!addrDest.GetSockAddr((struct sockaddr*)&addr, &len) || addr.sin_family != AF_INET)
     {
-        closesocket(hSocket);
+        close_socket(hSocket);
         return error("Cannot get proxy destination address");
     }
     memcpy(pszSocks4IP + 2, &addr.sin_port, 2);
@@ -198,18 +198,18 @@ bool static Socks4(const CService &addrDest, SOCKET& hSocket)
     int ret = send(hSocket, pszSocks4, nSize, MSG_NOSIGNAL);
     if (ret != nSize)
     {
-        closesocket(hSocket);
+        close_socket(hSocket);
         return error("Error sending to proxy");
     }
     char pchRet[8];
     if (recv(hSocket, pchRet, 8, 0) != 8)
     {
-        closesocket(hSocket);
+        close_socket(hSocket);
         return error("Error reading proxy response");
     }
     if (pchRet[1] != 0x5a)
     {
-        closesocket(hSocket);
+        close_socket(hSocket);
         if (pchRet[1] != 0x5b)
             printf("ERROR: Proxy returned error %d\n", pchRet[1]);
         return false;
@@ -218,12 +218,12 @@ bool static Socks4(const CService &addrDest, SOCKET& hSocket)
     return true;
 }
 
-bool static Socks5(string strDest, int port, SOCKET& hSocket)
+bool static Socks5(string strDest, int port, N_SOCKET& hSocket)
 {
     printf("SOCKS5 connecting %s\n", strDest.c_str());
     if (strDest.size() > 255)
     {
-        closesocket(hSocket);
+        close_socket(hSocket);
         return error("Hostname too long");
     }
     char pszSocks5Init[] = "\5\1\0";
@@ -233,18 +233,18 @@ bool static Socks5(string strDest, int port, SOCKET& hSocket)
     ssize_t ret = send(hSocket, pszSocks5, nSize, MSG_NOSIGNAL);
     if (ret != nSize)
     {
-        closesocket(hSocket);
+        close_socket(hSocket);
         return error("Error sending to proxy");
     }
     char pchRet1[2];
     if (recv(hSocket, pchRet1, 2, 0) != 2)
     {
-        closesocket(hSocket);
+        close_socket(hSocket);
         return error("Error reading proxy response");
     }
     if (pchRet1[0] != 0x05 || pchRet1[1] != 0x00)
     {
-        closesocket(hSocket);
+        close_socket(hSocket);
         return error("Proxy failed to initialize");
     }
     string strSocks5("\5\1");
@@ -256,23 +256,23 @@ bool static Socks5(string strDest, int port, SOCKET& hSocket)
     ret = send(hSocket, strSocks5.c_str(), strSocks5.size(), MSG_NOSIGNAL);
     if (ret != (ssize_t)strSocks5.size())
     {
-        closesocket(hSocket);
+        close_socket(hSocket);
         return error("Error sending to proxy");
     }
     char pchRet2[4];
     if (recv(hSocket, pchRet2, 4, 0) != 4)
     {
-        closesocket(hSocket);
+        close_socket(hSocket);
         return error("Error reading proxy response");
     }
     if (pchRet2[0] != 0x05)
     {
-        closesocket(hSocket);
+        close_socket(hSocket);
         return error("Proxy failed to accept request");
     }
     if (pchRet2[1] != 0x00)
     {
-        closesocket(hSocket);
+        close_socket(hSocket);
         switch (pchRet2[1])
         {
             case 0x01: return error("Proxy error: general failure");
@@ -288,7 +288,7 @@ bool static Socks5(string strDest, int port, SOCKET& hSocket)
     }
     if (pchRet2[2] != 0x00)
     {
-        closesocket(hSocket);
+        close_socket(hSocket);
         return error("Error: malformed proxy response");
     }
     char pchRet3[256];
@@ -301,30 +301,30 @@ bool static Socks5(string strDest, int port, SOCKET& hSocket)
             ret = recv(hSocket, pchRet3, 1, 0) != 1;
             if (ret)
             {
-                closesocket(hSocket);
+                close_socket(hSocket);
                 return error("Error reading from proxy");
             }
             int nRecv = pchRet3[0];
             ret = recv(hSocket, pchRet3, nRecv, 0) != nRecv;
             break;
         }
-        default: closesocket(hSocket); return error("Error: malformed proxy response");
+        default: close_socket(hSocket); return error("Error: malformed proxy response");
     }
     if (ret)
     {
-        closesocket(hSocket);
+        close_socket(hSocket);
         return error("Error reading from proxy");
     }
     if (recv(hSocket, pchRet3, 2, 0) != 2)
     {
-        closesocket(hSocket);
+        close_socket(hSocket);
         return error("Error reading from proxy");
     }
     printf("SOCKS5 connected %s\n", strDest.c_str());
     return true;
 }
 
-bool static ConnectSocketDirectly(const CService &addrConnect, SOCKET& hSocketRet, int nTimeout)
+bool static ConnectSocketDirectly(const CService &addrConnect, N_SOCKET& hSocketRet, int nTimeout)
 {
     hSocketRet = INVALID_SOCKET;
 
@@ -339,7 +339,7 @@ bool static ConnectSocketDirectly(const CService &addrConnect, SOCKET& hSocketRe
         return false;
     }
 
-    SOCKET hSocket = socket(((struct sockaddr*)&sockaddr)->sa_family, SOCK_STREAM, IPPROTO_TCP);
+    N_SOCKET hSocket = socket(((struct sockaddr*)&sockaddr)->sa_family, SOCK_STREAM, IPPROTO_TCP);
     if (hSocket == INVALID_SOCKET)
         return false;
 #ifdef SO_NOSIGPIPE
@@ -355,7 +355,7 @@ bool static ConnectSocketDirectly(const CService &addrConnect, SOCKET& hSocketRe
     if (fcntl(hSocket, F_SETFL, fFlags | O_NONBLOCK) == -1)
 #endif
     {
-        closesocket(hSocket);
+        close_socket(hSocket);
         return false;
     }
 
@@ -375,13 +375,13 @@ bool static ConnectSocketDirectly(const CService &addrConnect, SOCKET& hSocketRe
             if (nRet == 0)
             {
                 printf("connection timeout\n");
-                closesocket(hSocket);
+                close_socket(hSocket);
                 return false;
             }
             if (nRet == SOCKET_ERROR)
             {
                 printf("select() for connection failed: %i\n",WSAGetLastError());
-                closesocket(hSocket);
+                close_socket(hSocket);
                 return false;
             }
             socklen_t nRetSize = sizeof(nRet);
@@ -392,13 +392,13 @@ bool static ConnectSocketDirectly(const CService &addrConnect, SOCKET& hSocketRe
 #endif
             {
                 printf("getsockopt() for connection failed: %i\n",WSAGetLastError());
-                closesocket(hSocket);
+                close_socket(hSocket);
                 return false;
             }
             if (nRet != 0)
             {
                 printf("connect() failed after select(): %s\n",strerror(nRet));
-                closesocket(hSocket);
+                close_socket(hSocket);
                 return false;
             }
         }
@@ -409,7 +409,7 @@ bool static ConnectSocketDirectly(const CService &addrConnect, SOCKET& hSocketRe
 #endif
         {
             printf("connect() failed: %i\n",WSAGetLastError());
-            closesocket(hSocket);
+            close_socket(hSocket);
             return false;
         }
     }
@@ -425,7 +425,7 @@ bool static ConnectSocketDirectly(const CService &addrConnect, SOCKET& hSocketRe
     if (fcntl(hSocket, F_SETFL, fFlags & !O_NONBLOCK) == SOCKET_ERROR)
 #endif
     {
-        closesocket(hSocket);
+        close_socket(hSocket);
         return false;
     }
 
@@ -485,7 +485,7 @@ bool IsProxy(const CNetAddr &addr) {
     return false;
 }
 
-bool ConnectSocket(const CService &addrDest, SOCKET& hSocketRet, int nTimeout)
+bool ConnectSocket(const CService &addrDest, N_SOCKET& hSocketRet, int nTimeout)
 {
     proxyType proxy;
 
@@ -493,7 +493,7 @@ bool ConnectSocket(const CService &addrDest, SOCKET& hSocketRet, int nTimeout)
     if (!GetProxy(addrDest.GetNetwork(), proxy))
         return ConnectSocketDirectly(addrDest, hSocketRet, nTimeout);
 
-    SOCKET hSocket = INVALID_SOCKET;
+    N_SOCKET hSocket = INVALID_SOCKET;
 
     // first connect to proxy server
     if (!ConnectSocketDirectly(proxy.first, hSocket, nTimeout))
@@ -510,7 +510,7 @@ bool ConnectSocket(const CService &addrDest, SOCKET& hSocketRet, int nTimeout)
             return false;
         break;
     default:
-        closesocket(hSocket);
+        close_socket(hSocket);
         return false;
     }
 
@@ -518,13 +518,13 @@ bool ConnectSocket(const CService &addrDest, SOCKET& hSocketRet, int nTimeout)
     return true;
 }
 
-bool ConnectSocketByName(CService &addr, SOCKET& hSocketRet, const char *pszDest, int portDefault, int nTimeout)
+bool ConnectSocketByName(CService &addr, N_SOCKET& hSocketRet, const char *pszDest, int portDefault, int nTimeout)
 {
     string strDest;
     int port = portDefault;
     SplitHostPort(string(pszDest), port, strDest);
 
-    SOCKET hSocket = INVALID_SOCKET;
+    N_SOCKET hSocket = INVALID_SOCKET;
 
     proxyType nameproxy;
     GetNameProxy(nameproxy);
@@ -543,7 +543,7 @@ bool ConnectSocketByName(CService &addr, SOCKET& hSocketRet, const char *pszDest
     switch(nameproxy.second) {
         default:
         case 4:
-            closesocket(hSocket);
+            close_socket(hSocket);
             return false;
         case 5:
             if (!Socks5(strDest, port, hSocket))

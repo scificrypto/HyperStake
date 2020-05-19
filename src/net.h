@@ -30,7 +30,7 @@ inline unsigned int ReceiveFloodSize() { return 1000*GetArg("-maxreceivebuffer",
 inline unsigned int SendBufferSize() { return 1000*GetArg("-maxsendbuffer", 1*1000); }
 
 void AddOneShot(std::string strDest);
-bool RecvLine(SOCKET hSocket, std::string& strLine);
+bool RecvLine(N_SOCKET hSocket, std::string& strLine);
 bool GetMyExternalIP(CNetAddr& ipRet);
 void AddressCurrentlyConnected(const CService& addr);
 CNode* FindNode(const CNetAddr& ip);
@@ -181,7 +181,7 @@ class CNode
 public:
     // socket
     uint64 nServices;
-    SOCKET hSocket;
+    N_SOCKET hSocket;
     CDataStream vSend;
     CCriticalSection cs_vSend;
 	std::deque<CNetMessage> vRecvMsg;
@@ -236,7 +236,7 @@ public:
     CCriticalSection cs_inventory;
     std::multimap<int64, CInv> mapAskFor;
 
-    CNode(SOCKET hSocketIn, CAddress addrIn, std::string addrNameIn = "", bool fInboundIn=false) : vSend(SER_NETWORK, MIN_PROTO_VERSION)
+    CNode(N_SOCKET hSocketIn, CAddress addrIn, std::string addrNameIn = "", bool fInboundIn=false) : vSend(SER_NETWORK, MIN_PROTO_VERSION)
     {
         nServices = 0;
         hSocket = hSocketIn;
@@ -277,7 +277,7 @@ public:
     {
         if (hSocket != INVALID_SOCKET)
         {
-            closesocket(hSocket);
+            close_socket(hSocket);
             hSocket = INVALID_SOCKET;
         }
     }
