@@ -173,7 +173,16 @@
            <string notr="true"/>
           </property>
           <layout class="QHBoxLayout" name="horizontalLayoutCoinControl5">
-           <property name="margin">
+           <property name="leftMargin">
+            <number>0</number>
+           </property>
+           <property name="topMargin">
+            <number>0</number>
+           </property>
+           <property name="rightMargin">
+            <number>0</number>
+           </property>
+           <property name="bottomMargin">
             <number>0</number>
            </property>
            <item>
@@ -545,7 +554,7 @@
         <item>
          <layout class="QHBoxLayout" name="horizontalLayoutCoinControl4" stretch="0,0,0,0,0,0,0,0">
           <property name="spacing">
-           <number>12</number>
+           <number>3</number>
           </property>
           <property name="sizeConstraint">
            <enum>QLayout::SetDefaultConstraint</enum>
@@ -554,7 +563,7 @@
            <number>5</number>
           </property>
           <property name="rightMargin">
-           <number>5</number>
+           <number>0</number>
           </property>
           <item>
            <widget class="QCheckBox" name="splitBlockCheckBox">
@@ -576,7 +585,7 @@
             </property>
             <property name="maximumSize">
              <size>
-              <width>100</width>
+              <width>60</width>
               <height>16777215</height>
              </size>
             </property>
@@ -618,7 +627,7 @@
           <item>
            <widget class="QCheckBox" name="checkBoxCoinControlChange">
             <property name="text">
-             <string>Custom Change Address</string>
+             <string>Change Address</string>
             </property>
            </widget>
           </item>
@@ -688,11 +697,20 @@
         <x>0</x>
         <y>0</y>
         <width>830</width>
-        <height>158</height>
+        <height>156</height>
        </rect>
       </property>
       <layout class="QVBoxLayout" name="verticalLayout_2">
-       <property name="margin">
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
         <number>0</number>
        </property>
        <item>

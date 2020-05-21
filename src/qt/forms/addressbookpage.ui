@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>821</width>
+    <width>993</width>
     <height>380</height>
    </rect>
   </property>
@@ -58,7 +58,7 @@
    <item>
     <widget class="QCheckBox" name="deleteCheckBox">
      <property name="text">
-      <string>Enable Deletion of Receiving Address - WARNING YOU WILL LOSE KEYS TO ANY COINS AT THE ADDRESS, BACK UP WALLET FIRST!</string>
+      <string>Enable Deletion of Receive Address - KEYS WILL BE LOST FOR THE ADDRESS : BACK UP WALLET FIRST!</string>
      </property>
     </widget>
    </item>

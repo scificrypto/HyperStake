@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'bip38tooldialog.ui'
 **
-** Created by: Qt User Interface Compiler version 5.5.1
+** Created by: Qt User Interface Compiler version 5.9.5
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -348,57 +348,61 @@ public:
 
     void retranslateUi(QDialog *Bip38ToolDialog)
     {
-        Bip38ToolDialog->setWindowTitle(QApplication::translate("Bip38ToolDialog", "BIP 38 Tool", 0));
-        infoLabel_ENC->setText(QApplication::translate("Bip38ToolDialog", "Enter a HYP Address that you would like to encrypt using BIP 38. Enter a passphrase in the middle box. Press encrypt to compute the encrypted private key.", 0));
-        label_5->setText(QApplication::translate("Bip38ToolDialog", "Address:", 0));
+        Bip38ToolDialog->setWindowTitle(QApplication::translate("Bip38ToolDialog", "BIP 38 Tool", Q_NULLPTR));
+        infoLabel_ENC->setText(QApplication::translate("Bip38ToolDialog", "Enter a HYP Address that you would like to encrypt using BIP 38. Enter a passphrase in the middle box. Press encrypt to compute the encrypted private key.", Q_NULLPTR));
+        label_5->setText(QApplication::translate("Bip38ToolDialog", "Address:", Q_NULLPTR));
 #ifndef QT_NO_TOOLTIP
-        addressIn_ENC->setToolTip(QApplication::translate("Bip38ToolDialog", "The HYP address to encrypt", 0));
+        addressIn_ENC->setToolTip(QApplication::translate("Bip38ToolDialog", "The HYP address to encrypt", Q_NULLPTR));
 #endif // QT_NO_TOOLTIP
 #ifndef QT_NO_TOOLTIP
-        addressBookButton_ENC->setToolTip(QApplication::translate("Bip38ToolDialog", "Choose previously used address", 0));
+        addressBookButton_ENC->setToolTip(QApplication::translate("Bip38ToolDialog", "Choose previously used address", Q_NULLPTR));
 #endif // QT_NO_TOOLTIP
         addressBookButton_ENC->setText(QString());
-        addressBookButton_ENC->setShortcut(QApplication::translate("Bip38ToolDialog", "Alt+A", 0));
+#ifndef QT_NO_SHORTCUT
+        addressBookButton_ENC->setShortcut(QApplication::translate("Bip38ToolDialog", "Alt+A", Q_NULLPTR));
+#endif // QT_NO_SHORTCUT
 #ifndef QT_NO_TOOLTIP
-        pasteButton_ENC->setToolTip(QApplication::translate("Bip38ToolDialog", "Paste address from clipboard", 0));
+        pasteButton_ENC->setToolTip(QApplication::translate("Bip38ToolDialog", "Paste address from clipboard", Q_NULLPTR));
 #endif // QT_NO_TOOLTIP
         pasteButton_ENC->setText(QString());
-        pasteButton_ENC->setShortcut(QApplication::translate("Bip38ToolDialog", "Alt+P", 0));
-        label_6->setText(QApplication::translate("Bip38ToolDialog", "Passphrase: ", 0));
-        encryptedKeyLabel_ENC->setText(QApplication::translate("Bip38ToolDialog", "Encrypted Key:", 0));
+#ifndef QT_NO_SHORTCUT
+        pasteButton_ENC->setShortcut(QApplication::translate("Bip38ToolDialog", "Alt+P", Q_NULLPTR));
+#endif // QT_NO_SHORTCUT
+        label_6->setText(QApplication::translate("Bip38ToolDialog", "Passphrase: ", Q_NULLPTR));
+        encryptedKeyLabel_ENC->setText(QApplication::translate("Bip38ToolDialog", "Encrypted Key:", Q_NULLPTR));
 #ifndef QT_NO_TOOLTIP
-        copyKeyButton_ENC->setToolTip(QApplication::translate("Bip38ToolDialog", "Copy the current signature to the system clipboard", 0));
+        copyKeyButton_ENC->setToolTip(QApplication::translate("Bip38ToolDialog", "Copy the current signature to the system clipboard", Q_NULLPTR));
 #endif // QT_NO_TOOLTIP
         copyKeyButton_ENC->setText(QString());
 #ifndef QT_NO_TOOLTIP
-        encryptKeyButton_ENC->setToolTip(QApplication::translate("Bip38ToolDialog", "Sign the message to prove you own this HYP address", 0));
+        encryptKeyButton_ENC->setToolTip(QApplication::translate("Bip38ToolDialog", "Sign the message to prove you own this HYP address", Q_NULLPTR));
 #endif // QT_NO_TOOLTIP
-        encryptKeyButton_ENC->setText(QApplication::translate("Bip38ToolDialog", "Encrypt &Key", 0));
+        encryptKeyButton_ENC->setText(QApplication::translate("Bip38ToolDialog", "Encrypt &Key", Q_NULLPTR));
 #ifndef QT_NO_TOOLTIP
-        clearButton_ENC->setToolTip(QApplication::translate("Bip38ToolDialog", "Reset all sign message fields", 0));
+        clearButton_ENC->setToolTip(QApplication::translate("Bip38ToolDialog", "Reset all sign message fields", Q_NULLPTR));
 #endif // QT_NO_TOOLTIP
-        clearButton_ENC->setText(QApplication::translate("Bip38ToolDialog", "Clear &All", 0));
+        clearButton_ENC->setText(QApplication::translate("Bip38ToolDialog", "Clear &All", Q_NULLPTR));
         statusLabel_ENC->setText(QString());
-        tabWidget->setTabText(tabWidget->indexOf(tabBip38Encrypt), QApplication::translate("Bip38ToolDialog", "&BIP 38 Encrypt", 0));
-        infoLabel_DEC->setText(QApplication::translate("Bip38ToolDialog", "Enter the BIP 38 encrypted private key. Enter the passphrase in the middle box. Click Decrypt Key to compute the private key. After the key is decrypted, clicking 'Import Address' will add this private key to the wallet.", 0));
-        label_2->setText(QApplication::translate("Bip38ToolDialog", "Encrypted Key:", 0));
+        tabWidget->setTabText(tabWidget->indexOf(tabBip38Encrypt), QApplication::translate("Bip38ToolDialog", "&BIP 38 Encrypt", Q_NULLPTR));
+        infoLabel_DEC->setText(QApplication::translate("Bip38ToolDialog", "Enter the BIP 38 encrypted private key. Enter the passphrase in the middle box. Click Decrypt Key to compute the private key. After the key is decrypted, clicking 'Import Address' will add this private key to the wallet.", Q_NULLPTR));
+        label_2->setText(QApplication::translate("Bip38ToolDialog", "Encrypted Key:", Q_NULLPTR));
 #ifndef QT_NO_TOOLTIP
-        encryptedKeyIn_DEC->setToolTip(QApplication::translate("Bip38ToolDialog", "The BIP38 Encrypted Key", 0));
+        encryptedKeyIn_DEC->setToolTip(QApplication::translate("Bip38ToolDialog", "The BIP38 Encrypted Key", Q_NULLPTR));
 #endif // QT_NO_TOOLTIP
-        label->setText(QApplication::translate("Bip38ToolDialog", "Passphrase: ", 0));
+        label->setText(QApplication::translate("Bip38ToolDialog", "Passphrase: ", Q_NULLPTR));
 #ifndef QT_NO_TOOLTIP
-        decryptKeyButton_DEC->setToolTip(QApplication::translate("Bip38ToolDialog", "Decrypt the encrypted key", 0));
+        decryptKeyButton_DEC->setToolTip(QApplication::translate("Bip38ToolDialog", "Decrypt the encrypted key", Q_NULLPTR));
 #endif // QT_NO_TOOLTIP
-        decryptKeyButton_DEC->setText(QApplication::translate("Bip38ToolDialog", "Decrypt &Key", 0));
+        decryptKeyButton_DEC->setText(QApplication::translate("Bip38ToolDialog", "Decrypt &Key", Q_NULLPTR));
 #ifndef QT_NO_TOOLTIP
-        clearButton_DEC->setToolTip(QApplication::translate("Bip38ToolDialog", "Reset all verify message fields", 0));
+        clearButton_DEC->setToolTip(QApplication::translate("Bip38ToolDialog", "Reset all verify message fields", Q_NULLPTR));
 #endif // QT_NO_TOOLTIP
-        clearButton_DEC->setText(QApplication::translate("Bip38ToolDialog", "Clear &All", 0));
+        clearButton_DEC->setText(QApplication::translate("Bip38ToolDialog", "Clear &All", Q_NULLPTR));
         statusLabel_DEC->setText(QString());
-        label_3->setText(QApplication::translate("Bip38ToolDialog", "Decrypted Key:", 0));
-        importAddressButton_DEC->setText(QApplication::translate("Bip38ToolDialog", "Import Address", 0));
-        label_4->setText(QApplication::translate("Bip38ToolDialog", "Address:", 0));
-        tabWidget->setTabText(tabWidget->indexOf(tabBip38Decrypt), QApplication::translate("Bip38ToolDialog", "&BIP 38 Decrypt", 0));
+        label_3->setText(QApplication::translate("Bip38ToolDialog", "Decrypted Key:", Q_NULLPTR));
+        importAddressButton_DEC->setText(QApplication::translate("Bip38ToolDialog", "Import Address", Q_NULLPTR));
+        label_4->setText(QApplication::translate("Bip38ToolDialog", "Address:", Q_NULLPTR));
+        tabWidget->setTabText(tabWidget->indexOf(tabBip38Decrypt), QApplication::translate("Bip38ToolDialog", "&BIP 38 Decrypt", Q_NULLPTR));
     } // retranslateUi
 
 };
