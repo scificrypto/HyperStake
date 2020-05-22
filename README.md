@@ -42,7 +42,7 @@ Start up the new hyperstaked.
 
 
 See the hyperstake site:
-  https://hyperstake.crypto-city.com
+  https://www.crypto-city.com/index.php/hyperstake-hyp-ann/info
 for help and more information.
 
 Wallet themes
