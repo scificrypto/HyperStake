@@ -22,6 +22,7 @@ QT_FORMS_UI = \
   qt/forms/proposalsdialog.ui \
   qt/forms/qrcodedialog.ui \
   qt/forms/rpcconsole.ui \
+  qt/forms/resources.ui \
   qt/forms/sendcoinsdialog.ui \
   qt/forms/sendcoinsentry.ui \
   qt/forms/setvotesdialog.ui \
@@ -62,6 +63,7 @@ QT_MOC_CPP = \
   qt/moc_qvalidatedlineedit.cpp \
   qt/moc_qvaluecombobox.cpp \
   qt/moc_rpcconsole.cpp \
+  qt/moc_resources.cpp \
   qt/moc_sendcoinsdialog.cpp \
   qt/moc_sendcoinsentry.cpp \
   qt/moc_setvotesdialog.cpp \
@@ -122,6 +124,7 @@ BITCOIN_QT_H = \
   qt/qvalidatedlineedit.h \
   qt/qvaluecombobox.h \
   qt/rpcconsole.h \
+  qt/resources.h \
   qt/scicon.h \
   qt/sendcoinsdialog.h \
   qt/sendcoinsentry.h \
@@ -161,6 +164,7 @@ RES_ICONS = \
   qt/res/icons/hyperstake-16.png \
   qt/res/icons/hyperstake-32.png \
   qt/res/icons/hyperstake-128.png \
+  qt/res/icons/resources.png \
   qt/res/icons/info.png \
   qt/res/icons/key.png \
   qt/res/icons/lock_closed.png \
@@ -207,6 +211,7 @@ BITCOIN_QT_CPP = \
   qt/qvalidatedlineedit.cpp \
   qt/qvaluecombobox.cpp \
   qt/rpcconsole.cpp \
+  qt/resources.cpp \
   qt/scicon.cpp \
   qt/setvotesdialog.cpp \
   qt/walletmodel.cpp \
@@ -224,6 +229,7 @@ BITCOIN_QT_CPP += \
   qt/paymentserver.cpp \
   qt/sendcoinsdialog.cpp \
   qt/sendcoinsentry.cpp \
+  qt/resources.cpp \
   qt/signverifymessagedialog.cpp \
   qt/transactiondesc.cpp \
   qt/transactiondescdialog.cpp \

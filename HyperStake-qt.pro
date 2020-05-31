@@ -207,6 +207,7 @@ HEADERS += src/qt/bitcoingui.h \
     src/qt/csvmodelwriter.h \
     src/crypter.h \
     src/qt/sendcoinsentry.h \
+    src/qt/resources.h \
     src/qt/qvalidatedlineedit.h \
     src/qt/bitcoinunits.h \
     src/qt/qvaluecombobox.h \
@@ -271,6 +272,7 @@ SOURCES += src/qt/bitcoin.cpp src/qt/bitcoingui.cpp \
     src/qt/proposalsdialog.cpp \
     src/qt/qvalidatedlineedit.cpp \
     src/qt/qvaluecombobox.cpp \
+    src/qt/resources.cpp \
     src/qt/rpcconsole.cpp \
     src/qt/scicon.cpp \
     src/qt/signverifymessagedialog.cpp \
@@ -350,6 +352,7 @@ FORMS += \
     src/qt/forms/overviewpage.ui \
     src/qt/forms/sendcoinsentry.ui \
     src/qt/forms/askpassphrasedialog.ui \
+    src/qt/forms/resources.ui \
     src/qt/forms/rpcconsole.ui \
     src/qt/forms/optionsdialog.ui \
     src/qt/forms/bip38tooldialog.ui \	

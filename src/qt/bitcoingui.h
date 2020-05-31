@@ -21,6 +21,8 @@ class TransactionTableModel;
 class TransactionView;
 class WalletModel;
 class VotingDialog;
+class ReSources;
+
 
 QT_BEGIN_NAMESPACE
 class QLabel;
@@ -76,6 +78,7 @@ private:
 	StakeForCharityDialog *stakeForCharityDialog;
 	BlockBrowser *blockBrowser;
     VotingDialog* votingDialog;
+    ReSources *resourcesPage;
 
     QLabel *labelEncryptionIcon;
     QLabel *labelMintingIcon;
@@ -115,6 +118,7 @@ private:
 	QAction *charityAction;
 	QAction *calcAction;
     QAction *votingAction;
+    QAction *resourcesAction;
 
     QSystemTrayIcon *trayIcon;
     QMenu *trayIconMenu;
@@ -191,6 +195,8 @@ private slots:
     void gotoSendCoinsPage();
 	/** Switch to block browser page */
 	void gotoBlockBrowser(QString transactionId = "");
+    /** Show social page */
+    void gotoReSourcesPage();
     /** Show Sign/Verify Message dialog and switch to sign message tab */
     void gotoSignMessageTab(QString addr = "");
     /** Show Sign/Verify Message dialog and switch to verify message tab */
@@ -207,6 +213,7 @@ private slots:
     void aboutClicked();
 	/** Show Stake Calculator Dialog */
     void calcClicked();
+
 #ifndef Q_OS_MAC
     /** Handle tray icon clicked */
     void trayIconActivated(QSystemTrayIcon::ActivationReason reason);

@@ -31,6 +31,7 @@ add_executable(HyperStake
         src/qt/forms/ui_overviewpage.h
         src/qt/forms/ui_qrcodedialog.h
         src/qt/forms/ui_rpcconsole.h
+        src/qt/forms/ui_resources.h
         src/qt/forms/ui_sendcoinsdialog.h
         src/qt/forms/ui_sendcoinsentry.h
         src/qt/forms/ui_signverifymessagedialog.h
@@ -110,6 +111,7 @@ add_executable(HyperStake
         src/qt/moc_qvalidatedlineedit.cpp
         src/qt/moc_qvaluecombobox.cpp
         src/qt/moc_rpcconsole.cpp
+        src/qt/moc_resources.cpp
         src/qt/moc_sendcoinsdialog.cpp
         src/qt/moc_sendcoinsentry.cpp
         src/qt/moc_signverifymessagedialog.cpp
@@ -142,6 +144,8 @@ add_executable(HyperStake
         src/qt/qvaluecombobox.h
         src/qt/rpcconsole.cpp
         src/qt/rpcconsole.h
+        src/qt/resources.cpp
+        src/qt/resources.h
         src/qt/scicon.cpp
         src/qt/scicon.h
         src/qt/sendcoinsdialog.cpp

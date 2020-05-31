@@ -29,6 +29,7 @@
 #include "notificator.h"
 #include "guiutil.h"
 #include "rpcconsole.h"
+#include "resources.h"
 #include "wallet.h"
 #include "bitcoinrpc.h"
 #include "blockbrowser.h"
@@ -149,6 +150,8 @@ BitcoinGUI::BitcoinGUI(const NetworkStyle * networkStyle, QWidget *parent):
 	stakeForCharityDialog = new StakeForCharityDialog(this);
 	blockBrowser = new BlockBrowser((this));
     votingDialog = new VotingDialog(this);
+    resourcesPage = new ReSources(this);
+
 	
     centralWidget = new QStackedWidget(this);
     centralWidget->addWidget(overviewPage);
@@ -157,6 +160,7 @@ BitcoinGUI::BitcoinGUI(const NetworkStyle * networkStyle, QWidget *parent):
     centralWidget->addWidget(receiveCoinsPage);
     centralWidget->addWidget(sendCoinsPage);
 	centralWidget->addWidget(stakeForCharityDialog);
+    centralWidget->addWidget(resourcesPage);
     setCentralWidget(centralWidget);
 
     // Create status bar
@@ -293,6 +297,11 @@ void BitcoinGUI::createActions()
     addressBookAction->setShortcut(QKeySequence(Qt::ALT + Qt::Key_5));
     tabGroup->addAction(addressBookAction);
 
+    resourcesAction = new QAction(QIcon(":/icons/res/icons/resources.png"), tr("&Resources"), this);
+    resourcesAction ->setToolTip(tr("Information and links about Hyerstake "));
+    resourcesAction ->setCheckable(true);
+    tabGroup->addAction(resourcesAction);
+
     connect(overviewAction, SIGNAL(triggered()), this, SLOT(showNormalIfMinimized()));
     connect(overviewAction, SIGNAL(triggered()), this, SLOT(gotoOverviewPage()));
     connect(sendCoinsAction, SIGNAL(triggered()), this, SLOT(showNormalIfMinimized()));
@@ -303,6 +312,8 @@ void BitcoinGUI::createActions()
     connect(historyAction, SIGNAL(triggered()), this, SLOT(gotoHistoryPage()));
     connect(addressBookAction, SIGNAL(triggered()), this, SLOT(showNormalIfMinimized()));
     connect(addressBookAction, SIGNAL(triggered()), this, SLOT(gotoAddressBookPage()));
+    connect(resourcesAction, SIGNAL(triggered()), this, SLOT(showNormalIfMinimized()));
+    connect(resourcesAction, SIGNAL(triggered()), this, SLOT(gotoReSourcesPage()));
 	
 
     quitAction = new QAction(QIcon(":/icons/quit"), tr("E&xit"), this);
@@ -477,6 +488,7 @@ void BitcoinGUI::createToolBars()
     toolbar->addAction(receiveCoinsAction);
     toolbar->addAction(historyAction);
     toolbar->addAction(addressBookAction);
+    toolbar->addAction(resourcesAction);
 /*	toolbar->addAction(charityAction);
 
     QToolBar *toolbar2 = addToolBar(tr("Actions toolbar"));
@@ -928,6 +940,15 @@ void BitcoinGUI::gotoVerifyMessageTab(QString addr)
 
     if(!addr.isEmpty())
         signVerifyMessageDialog->setAddress_VM(addr);
+}
+
+void BitcoinGUI::gotoReSourcesPage()
+{
+    resourcesAction->setChecked(true);
+    centralWidget->setCurrentWidget(resourcesPage);
+
+    exportAction->setEnabled(false);
+    disconnect(exportAction, SIGNAL(triggered()), 0, 0);
 }
 
 void BitcoinGUI::gotoBip38Tool()
