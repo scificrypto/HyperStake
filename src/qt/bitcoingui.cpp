@@ -93,7 +93,7 @@ BitcoinGUI::BitcoinGUI(const NetworkStyle * networkStyle, QWidget *parent):
     notificator(0),
     rpcConsole(0)
 {
-    setFixedSize(750,700);
+    setFixedSize(760,720);
 //    setMaximumSize(750,750);
 //    resize(800, 800);
     
