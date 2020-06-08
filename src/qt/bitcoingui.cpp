@@ -93,11 +93,11 @@ BitcoinGUI::BitcoinGUI(const NetworkStyle * networkStyle, QWidget *parent):
     notificator(0),
     rpcConsole(0)
 {
-    setFixedSize(755,710);
+    setFixedSize(765,710);
 //    setMaximumSize(750,750);
 //    resize(800, 800);
     
-    QString windowTitle = tr("HyperStake") + " - " + tr("Wallet");
+    QString windowTitle = tr("HyperStake") + " " + tr("Wallet");
     windowTitle += " " + networkStyle->getTitleAddText();
 #ifndef Q_OS_MAC
     QApplication::setWindowIcon(networkStyle->getTrayAndWindowIcon());
