@@ -298,7 +298,7 @@ void BitcoinGUI::createActions()
     tabGroup->addAction(addressBookAction);
 
     resourcesAction = new QAction(QIcon(":/icons/res/icons/resources.png"), tr("&Resources"), this);
-    resourcesAction ->setToolTip(tr("Information and links about Hyerstake "));
+    resourcesAction ->setToolTip(tr("Information and links about HyperStake "));
     resourcesAction ->setCheckable(true);
     tabGroup->addAction(resourcesAction);
 
