@@ -86,4 +86,5 @@
         <file alias="update_spinner">res/movies/update_spinner.gif</file>
         <file alias="mining">res/movies/mining.gif</file>
     </qresource>
+    <qresource prefix="/fonts"/>
 </RCC>
