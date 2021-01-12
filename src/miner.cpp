@@ -560,6 +560,7 @@ void BitcoinMiner(CWallet *pwallet, bool fProofOfStake)
 
         fWalletStaking = false;
 
+	if (fProofOfStake) {
         while (vNodes.empty() || IsInitialBlockDownload() || pwallet->IsLocked()  ||  !fMintableCoins)
         {
             nLastCoinStakeSearchInterval = 0;
@@ -587,7 +588,7 @@ void BitcoinMiner(CWallet *pwallet, bool fProofOfStake)
                 continue;
             }
         }
-
+}
         //
         // Create new block
         //
@@ -618,9 +619,10 @@ void BitcoinMiner(CWallet *pwallet, bool fProofOfStake)
             }
             continue;
         }
-
-        printf("Running BitcoinMiner with %lu transactions in block (%u bytes)\n", pblock->vtx.size(),
-               ::GetSerializeSize(*pblock, SER_NETWORK, PROTOCOL_VERSION));
+        
+        if(fDebug)
+        	printf("Running BitcoinMiner with %lu transactions in block (%u bytes)\n", pblock->vtx.size(),
+               		::GetSerializeSize(*pblock, SER_NETWORK, PROTOCOL_VERSION));
 
         //
         // Pre-build hash buffers
@@ -639,12 +641,12 @@ void BitcoinMiner(CWallet *pwallet, bool fProofOfStake)
         //
         int64 nStart = GetTime();
         uint256 hashTarget = CBigNum().SetCompact(pblock->nBits).getuint256();
-
         while (true)
         {
             unsigned int nHashesDone = 0;
 
             uint256 thash;
+            bool fPOWBlockAccepted;
             while (true)
             {
                 thash = pblock->GetHash();
@@ -657,7 +659,7 @@ void BitcoinMiner(CWallet *pwallet, bool fProofOfStake)
                     }
 
                     SetThreadPriority(THREAD_PRIORITY_NORMAL);
-                    CheckWork(pblock.get(), *pwallet, reservekey);
+                    fPOWBlockAccepted = CheckWork(pblock.get(), *pwallet, reservekey);
                     SetThreadPriority(THREAD_PRIORITY_LOWEST);
                     break;
                 }
@@ -706,6 +708,12 @@ void BitcoinMiner(CWallet *pwallet, bool fProofOfStake)
                 break;
             if (pindexPrev != pindexBest)
                 break;
+	    if (!fPOWBlockAccepted)
+                break;
+ 	    if (!GetBoolArg("-gen")) {
+		fGenerateBitcoins = false;
+		break;
+		}
 
             // Update nTime every few seconds
             pblock->UpdateTime(pindexPrev);

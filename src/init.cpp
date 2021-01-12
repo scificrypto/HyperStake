@@ -167,7 +167,7 @@ std::string HelpMessage()
     strUsage += "  -listen                " + _("Accept connections from outside (default: 1 if no -proxy or -connect)") + "\n";
     strUsage += "  -bind=<addr>           " + _("Bind to given address. Use [host]:port notation for IPv6") + "\n";
     strUsage += "  -dnsseed               " + _("Find peers using DNS lookup (default: 0)") + "\n";
-    strUsage += "  -nosynccheckpoints     " + _("Disable sync checkpoints (default: 0)") + "\n";
+    // strUsage += "  -nosynccheckpoints     " + _("Disable sync checkpoints (default: 0)") + "\n";
     strUsage += "  -banscore=<n>          " + _("Threshold for disconnecting misbehaving peers (default: 100)") + "\n";
     strUsage += "  -bantime=<n>           " + _("Number of seconds to keep misbehaving peers from reconnecting (default: 86400)") + "\n";
     strUsage += "  -maxreceivebuffer=<n>  " + _("Maximum per-connection receive buffer, <n>*1000 bytes (default: 5000)") + "\n";
@@ -191,6 +191,7 @@ std::string HelpMessage()
         strUsage +="  -daemon                " + _("Run in the background as a daemon and accept commands") + "\n";
 #endif
     strUsage += "  -testnet               " + _("Use the test network") + "\n";
+    strUsage += "  -notestnetcheckpoints  " + _("Don't use checkpoints in the test network") + "\n";
     strUsage += "  -debug                 " + _("Output extra debugging information. Implies all other -debug* options") + "\n";
     strUsage += "  -debugnet              " + _("Output extra network debugging information") + "\n";
     strUsage += "  -logtimestamps         " + _("Prepend debug output with timestamp") + "\n";

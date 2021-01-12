@@ -2257,7 +2257,7 @@ bool CBlock::AcceptBlock()
             return DoS(10, error("AcceptBlock() : contains a non-final transaction"));
 
     // Check that the block chain matches the known block chain up to a checkpoint
-    if (!Checkpoints::CheckHardened(nHeight, hash))
+    if ((!fTestNet || (fTestNet && GetBoolArg("-testnetcheckpoints", true))) && !Checkpoints::CheckHardened(nHeight, hash))
         return DoS(100, error("AcceptBlock() : rejected by hardened checkpoint lock-in at %d", nHeight));
 
     // Reject block.nVersion < 3 blocks since 95% threshold on mainNet and always on testNet:
