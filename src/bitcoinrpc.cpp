@@ -1227,6 +1227,7 @@ Array RPCConvertValues(const std::string &strMethod, const std::vector<std::stri
 	if (strMethod == "ccselect"               && n > 1) ConvertTo<int>(params[1]);
 	if (strMethod == "ccreturnchange"         && n > 0)	ConvertTo<bool>(params[0]);
 	if (strMethod == "ccsend"                 && n > 1) ConvertTo<int>(params[1]);
+        if (strMethod == "ccsend"                 && n > 2) ConvertTo<int>(params[2]);
 	if (strMethod == "sendalert"              && n > 1) ConvertTo<int>(params[2]);
 	if (strMethod == "sendalert"              && n > 1) ConvertTo<int>(params[3]);
 	if (strMethod == "sendalert"              && n > 1) ConvertTo<int>(params[4]);

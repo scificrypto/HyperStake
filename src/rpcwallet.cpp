@@ -2318,11 +2318,24 @@ Value ccreset(const Array& params, bool fHelp)
 // presstab HyperStake
 Value ccsend(const Array& params, bool fHelp)
 {
-    if (fHelp || params.size() != 2)
+    if (fHelp || (params.size() < 2 || params.size() > 3))
         throw runtime_error(
-		"ccsend <HyperStakeaddress> <amount>\n"
+		"ccsend <HyperStakeaddress> <amount> [split to 2-255 blocks]\n"
+		"[split to blocks] defaults to 1 (no split)\n"
             "<amount> is a real and is rounded to the nearest 0.000001"
             + HelpRequiringPassphrase());
+
+   int nSplitBlock;
+
+   if (params.size() == 3) {
+	nSplitBlock = params[2].get_int();
+	if (nSplitBlock < 2 || nSplitBlock > 255)
+		return "Error. Please select the number of blocks to split to in the range of 2-255";
+       pwalletMain->fSplitBlock = true;
+	}
+   else 
+        nSplitBlock = 1;
+
 
     EnsureWalletIsUnlocked();
 
@@ -2348,7 +2361,7 @@ Value ccsend(const Array& params, bool fHelp)
         scriptPubKey.SetDestination(address.Get());
     vecSend.push_back(make_pair(scriptPubKey, nAmount));
 	
-    bool fCreated = pwalletMain->CreateTransaction(vecSend, wtx, keyChange, nFeeRequired, 1, false, coinControl); // 1 = no splitblock, false for s4c, coinControl
+    bool fCreated = pwalletMain->CreateTransaction(vecSend, wtx, keyChange, nFeeRequired, nSplitBlock, false, coinControl); // false for s4c, coinControl
     if (!fCreated)
     {
         if (nAmount + nFeeRequired > pwalletMain->GetBalance())
@@ -2359,6 +2372,7 @@ Value ccsend(const Array& params, bool fHelp)
         throw JSONRPCError(RPC_WALLET_ERROR, "Transaction commit failed");
 	
 	coinControl->SetNull();
+        pwalletMain->fSplitBlock = false;
     return wtx.GetHash().GetHex();
 }
 
