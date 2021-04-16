@@ -374,7 +374,7 @@ bool static ConnectSocketDirectly(const CService &addrConnect, N_SOCKET& hSocket
             int nRet = select(hSocket + 1, NULL, &fdset, NULL, &timeout);
             if (nRet == 0)
             {
-                printf("connection timeout\n");
+                //printf("connection timeout\n");
                 close_socket(hSocket);
                 return false;
             }

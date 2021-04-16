@@ -471,10 +471,10 @@ CNode* ConnectNode(CAddress addrConnect, const char *pszDest, int64 nTimeout)
     }
 
 
-    /// debug print
-    printf("trying connection %s lastseen=%.1fhrs\n",
-        pszDest ? pszDest : addrConnect.ToString().c_str(),
-        pszDest ? 0 : (double)(GetAdjustedTime() - addrConnect.nTime)/3600.0);
+    // debug print
+    //printf("trying connection %s lastseen=%.1fhrs\n",
+    //    pszDest ? pszDest : addrConnect.ToString().c_str(),
+    //    pszDest ? 0 : (double)(GetAdjustedTime() - addrConnect.nTime)/3600.0);
 
     // Connect
     N_SOCKET hSocket;
