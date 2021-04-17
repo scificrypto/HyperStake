@@ -65,8 +65,9 @@ Value importprivkey(const Array& params, bool fHelp)
         if (!pwalletMain->AddKey(key))
             throw JSONRPCError(RPC_WALLET_ERROR, "Error adding key to wallet");
 
-        pwalletMain->ScanForWalletTransactions(pindexGenesisBlock, true);
-        pwalletMain->ReacceptWalletTransactions();
+        // pwalletMain->ScanForWalletTransactions(pindexGenesisBlock, true);
+        // pwalletMain->ReacceptWalletTransactions();
+        // Now you can use: rescanfromblock <block height>
     }
 
     return Value::null;
