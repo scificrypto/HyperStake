@@ -342,7 +342,7 @@ bool CheckStakeKernelHash(unsigned int nBits, const CBlock& blockFrom, unsigned 
 	int nStakeModifierHeight = 0;
 	int64 nStakeModifierTime = 0;
 	if (!GetKernelStakeModifier(blockFrom.GetHash(), nStakeModifier, nStakeModifierHeight, nStakeModifierTime, fPrintProofOfStake))
-		return error("::CheckStakeKernelHash() : GetKernelStakeModifier() failed");
+		return false;
 		
 	//create data stream once instead of repeating it in the loop
 	CDataStream ss(SER_GETHASH, 0);
