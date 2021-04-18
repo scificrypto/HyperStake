@@ -221,6 +221,7 @@ HEADERS += src/qt/bitcoingui.h \
     src/qt/rpcconsole.h \
     src/version.h \
     src/netbase.h \
+    src/ntp.h \
     src/clientversion.h \
     src/hashblock.h \
     src/sph_blake.h \
@@ -294,6 +295,7 @@ SOURCES += src/qt/bitcoin.cpp src/qt/bitcoingui.cpp \
     src/sync.cpp \
     src/util.cpp \
     src/netbase.cpp \
+    src/ntp.cpp \
     src/key.cpp \
     src/scrypt.cpp \
     src/script.cpp \

@@ -297,6 +297,7 @@ static const CRPCCommand vRPCCommands[] =
 	{ "hashsettings",           &hashsettings,           false,  false },
 	{ "gettxfee",               &gettxfee,               false,  false },
     { "getstakingstatus",       &getstakingstatus,       false,  false },
+    { "ntptime",                &ntptime,                true,   true  },
     { "bip38encrypt",           &bip38encrypt,           false,  false },
     { "bip38decrypt",           &bip38decrypt,           false,  false }
 
