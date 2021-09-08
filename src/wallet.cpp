@@ -587,8 +587,7 @@ bool CWallet::IsChange(const CTxOut& txout) const
 
 int64 CWalletTx::GetTxTime() const
 {
-    int64 n = nTimeSmart;
-    return n ? n : nTimeReceived;
+    return nTime;
 }
 
 int CWalletTx::GetRequestCount() const
@@ -1712,6 +1711,7 @@ bool CWallet::CreateCoinStake(const CKeyStore& keystore, unsigned int nBits, int
     bnStakeWeightCached = 0;
 	vector<const CWalletTx*> vwtxPrev;
 	
+    CBlockIndex* pindexStart = pindexBest;
     int64 nCredit = 0;
     CScript scriptPubKeyKernel;
 	CTxDB txdb("r");
@@ -1814,14 +1814,15 @@ bool CWallet::CreateCoinStake(const CKeyStore& keystore, unsigned int nBits, int
 			fKernelFound = true;
 			break;
 		}
-        if (fKernelFound || fShutdown)
-			break; // if kernel is found stop searching
+        if (fKernelFound || fShutdown || (pindexStart != pindexBest))
+			break; // if kernel is found or Best index change stop searching
             
     }
     if (nCredit == 0 || nCredit > nBalance - nReserveBalance)
         return false;
 
-	if(fCombineDust) //presstab HyperStake - this combination code iterates through all of your outputs on successful coinstake, so its useful to have user be able to choose whether this is necessary
+	if (pindexStart != pindexBest) return false;
+    if(fCombineDust) //presstab HyperStake - this combination code iterates through all of your outputs on successful coinstake, so its useful to have user be able to choose whether this is necessary
 	{
 		BOOST_FOREACH(PAIRTYPE(const CWalletTx*, unsigned int) pcoin, setStakeCoins)
 		{

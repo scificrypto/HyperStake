@@ -229,6 +229,8 @@ uint256 GetRandHash();
 int64 GetTime();
 void SetMockTime(int64 nMockTimeIn);
 int64 GetAdjustedTime();
+int64 GetTimeOffset();
+int64 GetNodesOffset();
 long hex2long(const char* hexString);
 void AddTimeData(const CNetAddr& ip, int64 nTime);
 void runCommand(std::string strCommand);

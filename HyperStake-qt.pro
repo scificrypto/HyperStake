@@ -2,7 +2,7 @@ TEMPLATE = app
 TARGET = HyperStake-qt
 VERSION = 1.1.5
 INCLUDEPATH += src src/json src/qt
-DEFINES += QT_GUI BOOST_THREAD_USE_LIB BOOST_SPIRIT_THREADSAFE BOOST_THREAD_PROVIDES_GENERIC_SHARED_MUTEX_ON_WIN __NO_SYSTEM_INCLUDES
+DEFINES += QT_GUI BOOST_THREAD_USE_LIB BOOST_SPIRIT_THREADSAFE BOOST_THREAD_PROVIDES_GENERIC_SHARED_MUTEX_ON_WIN __NO_SYSTEM_INCLUDES __STDC_LIMIT_MACROS
 CONFIG += no_include_pwd static c++11
 QT += core gui xml network
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
@@ -20,25 +20,25 @@ unix:!macx {
 }
 
 
-#win32{
+win32{
     #uncomment the following section to enable building on windows:
- #   windows:LIBS += -lshlwapi
-  #  LIBS += $$join(BOOST_LIB_PATH,,-L,) $$join(BDB_LIB_PATH,,-L,) $$join(OPENSSL_LIB_PATH,,-L,) $$join(QRENCODE_LIB_PATH,,-L,)
-   # LIBS += -lssl -lcrypto -ldb_cxx$$BDB_LIB_SUFFIX
-   # windows:LIBS += -lws2_32 -lole32 -loleaut32 -luuid -lgdi32
-   # LIBS += -lboost_system-mgw48-mt-s-1_55 -lboost_filesystem-mgw48-mt-s-1_55 -lboost_program_options-mgw48-mt-s-1_55 -lboost_thread-mgw48-mt-s-1_55
-   # BOOST_LIB_SUFFIX=-mgw48-mt-s-1_55
-   # BOOST_INCLUDE_PATH=C:/deps/boost_1_55_0
-   # BOOST_LIB_PATH=C:/deps/boost_1_55_0/stage/lib
-   # BDB_INCLUDE_PATH=C:/deps/db-4.8.30.NC/build_unix
-   # BDB_LIB_PATH=C:/deps/db-4.8.30.NC/build_unix
-   # OPENSSL_INCLUDE_PATH=C:/deps/openssl-1.0.1g/include
-   # OPENSSL_LIB_PATH=C:/deps/openssl-1.0.1g
-   # MINIUPNPC_LIB_PATH=C:/deps/miniupnpc
-   # MINIUPNPC_INCLUDE_PATH=c:/deps
-   # QRENCODE_INCLUDE_PATH=C:/deps/qrencode-3.4.3
-   # QRENCODE_LIB_PATH=C:/deps/qrencode-3.4.3/.libs
-#}
+    windows:LIBS += -lshlwapi
+    LIBS += $$join(BOOST_LIB_PATH,,-L,) $$join(BDB_LIB_PATH,,-L,) $$join(OPENSSL_LIB_PATH,,-L,) $$join(QRENCODE_LIB_PATH,,-L,)
+    LIBS += -lssl -lcrypto -ldb_cxx$$BDB_LIB_SUFFIX
+    windows:LIBS += -lws2_32 -lole32 -loleaut32 -luuid -lgdi32
+    LIBS += -lboost_system-mgw49-mt-s-1_59 -lboost_filesystem-mgw49-mt-s-1_59 -lboost_program_options-mgw49-mt-s-1_59 -lboost_thread-mgw49-mt-s-1_59
+    BOOST_LIB_SUFFIX=-mgw49-mt-s-1_59
+BOOST_INCLUDE_PATH=C:/deps/boost_1_59_0
+BOOST_LIB_PATH=C:/deps/boost_1_59_0/stage/lib
+BDB_INCLUDE_PATH=C:/deps/db-4.8.30.NC/build_unix
+BDB_LIB_PATH=C:/deps/db-4.8.30.NC/build_unix
+OPENSSL_INCLUDE_PATH=C:/deps/openssl-1.0.1p/include
+OPENSSL_LIB_PATH=C:/deps/openssl-1.0.1p
+MINIUPNPC_INCLUDE_PATH=C:/deps/
+MINIUPNPC_LIB_PATH=C:/deps/miniupnpc
+QRENCODE_INCLUDE_PATH=C:/deps/qrencode-3.4.4
+QRENCODE_LIB_PATH=C:/deps/qrencode-3.4.4/.libs
+} 
 
 OBJECTS_DIR = build
 MOC_DIR = build
@@ -84,7 +84,7 @@ contains(USE_UPNP, -) {
     count(USE_UPNP, 0) {
         USE_UPNP=1
     }
-    DEFINES += USE_UPNP=$$USE_UPNP STATICLIB
+    DEFINES += USE_UPNP=$$USE_UPNP MINIUPNP_STATICLIB
     INCLUDEPATH += $$MINIUPNPC_INCLUDE_PATH
     LIBS += $$join(MINIUPNPC_LIB_PATH,,-L,) -lminiupnpc
     win32:LIBS += -liphlpapi
@@ -169,6 +169,7 @@ HEADERS += src/qt/bitcoingui.h \
     src/pbkdf2.h \
     src/serialize.h \
     src/main.h \
+    src/miner.h \
     src/net.h \
     src/key.h \
     src/db.h \
@@ -220,6 +221,7 @@ HEADERS += src/qt/bitcoingui.h \
     src/qt/rpcconsole.h \
     src/version.h \
     src/netbase.h \
+    src/ntp.h \
     src/clientversion.h \
     src/hashblock.h \
     src/sph_blake.h \
@@ -293,10 +295,12 @@ SOURCES += src/qt/bitcoin.cpp src/qt/bitcoingui.cpp \
     src/sync.cpp \
     src/util.cpp \
     src/netbase.cpp \
+    src/ntp.cpp \
     src/key.cpp \
     src/scrypt.cpp \
     src/script.cpp \
     src/main.cpp \
+    src/miner.cpp \
     src/init.cpp \
     src/net.cpp \
     src/checkpoints.cpp \
@@ -467,7 +471,7 @@ LIBS += -lssl -lcrypto -ldb_cxx$$BDB_LIB_SUFFIX
 # -lgdi32 has to happen after -lcrypto (see  #681)
 windows:LIBS += -lws2_32 -lshlwapi -lmswsock -lole32 -loleaut32 -luuid -lgdi32
 LIBS += -lboost_system$$BOOST_LIB_SUFFIX -lboost_filesystem$$BOOST_LIB_SUFFIX -lboost_program_options$$BOOST_LIB_SUFFIX -lboost_thread$$BOOST_THREAD_LIB_SUFFIX
-windows:LIBS += -lboost_chrono$$BOOST_LIB_SUFFIX
+windows:LIBS += -lboost_chrono$$BOOST_LIB_SUFFIX -Wl,-Bstatic -lpthread
 
 contains(RELEASE, 1) {
     !windows:!macx {
