@@ -55,6 +55,7 @@ BITCOIN_CORE_H = \
   mruset.h \
   netbase.h \
   net.h \
+  ntp.h \
   pbkdf2.h \
   protocol.h \
   script.h \
@@ -127,6 +128,7 @@ libbitcoin_server_a_SOURCES = \
   main.cpp \
   miner.cpp \
   net.cpp \
+  ntp.cpp \
   noui.cpp \
   rpcblockchain.cpp \
   rpcmining.cpp \
