@@ -403,7 +403,7 @@ int64 NtpGetTime(CNetAddr& ip) {
     ip = CNetAddr(((sockaddr_in *)&cliaddr)->sin_addr);
     int64 nTime = DoReq(sockfd, servlen, cliaddr);
 
-    closesocket(sockfd);
+    close_socket(sockfd);
 
     return nTime;
 }
@@ -420,7 +420,7 @@ int64 NtpGetTime(const std::string &strHostName)
 
     int64 nTime = DoReq(sockfd, servlen, cliaddr);
 
-    closesocket(sockfd);
+    close_socket(sockfd);
 
     return nTime;
 }
