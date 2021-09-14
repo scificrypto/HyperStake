@@ -34,7 +34,7 @@ SendCoinsDialog::SendCoinsDialog(QWidget *parent) :
 
 #if QT_VERSION >= 0x040700
      /* Do not move this to the XML file, Qt before 4.7 will choke on it */
-     ui->lineEditCoinControlChange->setPlaceholderText(tr("Enter a HyperStake address (e.g. pAvP3gYfuyDVbUt98ToMbwU9rwEdBV1dHW)"));
+     ui->lineEditCoinControlChange->setPlaceholderText(tr("Enter a Element address (e.g. pAvP3gYfuyDVbUt98ToMbwU9rwEdBV1dHW)"));
 	 ui->splitBlockLineEdit->setPlaceholderText(tr("# of Blocks"));
 	 ui->splitBlockCheckBox->setToolTip(tr("Enable/Disable Block Splitting"));
 	 ui->returnChangeCheckBox->setToolTip(tr("Use your sending address as the change address"));
@@ -491,7 +491,7 @@ void SendCoinsDialog::updateDisplayUnit()
  }
  
   // Coin Control: return change
-  // presstab HyperStake
+  // presstab Element
  void SendCoinsDialog::coinControlReturnChangeChecked(int state)
  {
      if(state == Qt::Checked && ui->checkBoxCoinControlChange->checkState() == Qt::Checked)
@@ -513,7 +513,7 @@ void SendCoinsDialog::updateDisplayUnit()
  }
  
 // Coin Control: split block check box
-// presstab HyperStake
+// presstab Element
 void SendCoinsDialog::coinControlSplitBlockChecked(int state)
 {
     if (model)
@@ -536,7 +536,7 @@ void SendCoinsDialog::coinControlSplitBlockChecked(int state)
 	}
 }
 
-//presstab HyperStake
+//presstab Element
 void SendCoinsDialog::splitBlockLineEditChanged(const QString & text)
 {
 	double nAfterFee =  ui->labelCoinControlAfterFee->text().left(ui->labelCoinControlAfterFee->text().indexOf(" ")).toDouble();
@@ -586,7 +586,7 @@ void SendCoinsDialog::splitBlockLineEditChanged(const QString & text)
          {
              ui->labelCoinControlChangeLabel->setProperty("error", true);
              ui->labelCoinControlChangeLabel->style()->polish(ui->labelCoinControlChangeLabel);
-             ui->labelCoinControlChangeLabel->setText(tr("WARNING: Invalid HyperStake address"));
+             ui->labelCoinControlChangeLabel->setText(tr("WARNING: Invalid Element address"));
          }
          else
          {

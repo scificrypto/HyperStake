@@ -1,6 +1,6 @@
-# HyperStake
+# Element
 
-Copyright (c) 2013-2017 HyperStake Developers
+Copyright (c) 2013-2017 Element Developers
 Copyright (c) 2013 NovaCoin Developers
 Copyright (c) 2011-2012 Bitcoin Developers
 Distributed under the MIT/X11 software license, see the accompanying
@@ -12,7 +12,7 @@ cryptographic software written by Eric Young (eay@cryptsoft.com).
 
 Intro
 -----
-HyperStake is a free open source project derived from NovaCoin, with
+Element is a free open source project derived from NovaCoin, with
 the goal of providing a long-term energy-efficient Proof of Stake based crypto-currency.
 Built on the foundation of Bitcoin and NovaCoin, innovations such as proof-of-stake
 help further advance the field of crypto-currency.
@@ -20,29 +20,29 @@ help further advance the field of crypto-currency.
 Setup
 -----
 Unpack the files into a directory and run:
- bin/32/hyperstaked (headless, 32-bit)
- bin/64/hyperstaked (headless, 64-bit)
+ bin/32/elementd (headless, 32-bit)
+ bin/64/elementd (headless, 64-bit)
 
 The software automatically finds other nodes to connect to.  You can
 enable Universal Plug and Play (UPnP) with your router/firewall
 or forward port 
 
 18775 (TCP) to your computer so you can receive
-incoming connections.  hyperstake works without incoming connections,
-but allowing incoming connections helps the hyperstake network.
+incoming connections.  element works without incoming connections,
+but allowing incoming connections helps the element network.
 
 Upgrade
 -------
 All you existing coins/transactions should be intact with the upgrade.
 To upgrade first backup wallet
-hyperstaked backupwallet <destination_backup_file>
-Then shutdown hyperstaked by
-hyperstaked stop
-Start up the new hyperstaked.
+elementd backupwallet <destination_backup_file>
+Then shutdown elementd by
+elementd stop
+Start up the new elementd.
 
 
-See the hyperstake site:
-  https://www.crypto-city.com/index.php/hyperstake-hyp-ann/info
+See the element site:
+  https://www.crypto-city.com/index.php/element-hyp-ann/info
 for help and more information.
 
 Wallet themes
@@ -50,12 +50,12 @@ Wallet themes
 
 | HyperBlue     | PoloniexNight | PoloniexDay   |
 | ------------- | ------------- | ------------- |
-| [![HyperBlue](https://github.com/zeewolfik/HyperStake/raw/master/src/qt/res/screenshots/hyperstake-hyperblue-theme-th.png)](https://github.com/zeewolfik/HyperStake/raw/master/src/qt/res/screenshots/hyperstake-hyperblue-theme.png) | [![PoloniexNight](https://github.com/zeewolfik/HyperStake/raw/master/src/qt/res/screenshots/hyperstake-poloniexnight-theme-th.png)](https://github.com/zeewolfik/HyperStake/raw/master/src/qt/res/screenshots/hyperstake-poloniexnight-theme.png) | [![PoloniexNight](https://github.com/zeewolfik/HyperStake/raw/master/src/qt/res/screenshots/hyperstake-poloniexday-theme-th.png)](https://github.com/zeewolfik/HyperStake/raw/master/src/qt/res/screenshots/hyperstake-poloniexday-theme.png) |
+| [![HyperBlue](https://github.com/zeewolfik/Element/raw/master/src/qt/res/screenshots/element-hyperblue-theme-th.png)](https://github.com/zeewolfik/Element/raw/master/src/qt/res/screenshots/element-hyperblue-theme.png) | [![PoloniexNight](https://github.com/zeewolfik/Element/raw/master/src/qt/res/screenshots/element-poloniexnight-theme-th.png)](https://github.com/zeewolfik/Element/raw/master/src/qt/res/screenshots/element-poloniexnight-theme.png) | [![PoloniexNight](https://github.com/zeewolfik/Element/raw/master/src/qt/res/screenshots/element-poloniexday-theme-th.png)](https://github.com/zeewolfik/Element/raw/master/src/qt/res/screenshots/element-poloniexday-theme.png) |
 
 
 Build Instructions (Linux)
 -------
-### Dependencies required for HyperStake with or without GUI:
+### Dependencies required for Element with or without GUI:
 `sudo apt-get install build-essential libtool autotools-dev autoconf pkg-config libssl-dev libboost-all-dev libdb5.3-dev libdb5.3++-dev libminiupnpc-dev automake`
 
 `./autogen.sh`

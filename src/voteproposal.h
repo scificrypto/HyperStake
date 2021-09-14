@@ -1,4 +1,4 @@
-// Copyright (c) 2017 The HyperStake Developers
+// Copyright (c) 2017 The Element Developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -94,4 +94,4 @@ public:
 
 bool ProposalFromTransaction(const CTransaction& tx, CVoteProposal& proposal);
 
-#endif //HYPERSTAKE_VOTEPROPOSAL_H
+#endif //ELEMENT_VOTEPROPOSAL_H

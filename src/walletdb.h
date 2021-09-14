@@ -98,13 +98,13 @@ public:
         nWalletDBUpdated++;
         return Write(std::string("orderposnext"), nOrderPosNext);
     }
-	// presstab HyperStake
+	// presstab Element
 	bool WriteStakeSplitThreshold(uint64 nStakeSplitThreshold)
 	{
 		nWalletDBUpdated++;
 		return Write(std::string("stakeSplitThreshold"), nStakeSplitThreshold);
 	}
-	//presstab HyperStake
+	//presstab Element
 	bool WriteMultiSend(std::vector<std::pair<std::string, int> > vMultiSend)
 	{
 		nWalletDBUpdated++;
@@ -118,7 +118,7 @@ public:
 		}
 		return ret;
 	}
-	//presstab HyperStake
+	//presstab Element
 	bool EraseMultiSend(std::vector<std::pair<std::string, int> > vMultiSend)
 	{
 		nWalletDBUpdated++;
@@ -132,7 +132,7 @@ public:
 		}
 		return ret;
 	}
-	//presstab HyperStake
+	//presstab Element
 	bool WriteMSettings(bool fEnable, int nLastMultiSendHeight)
 	{
 		nWalletDBUpdated++;
@@ -146,7 +146,7 @@ public:
 		nWalletDBUpdated++;
 		return Write(std::string("mcoinstake"), fMultiSendCoinStake, true);
 	}
-	//presstab HyperStake
+	//presstab Element
 	bool WriteMSDisabledAddresses(std::vector<std::string> vDisabledAddresses)
 	{
 		nWalletDBUpdated++;
@@ -158,7 +158,7 @@ public:
 		}
 		return ret;
 	}
-	//presstab HyperStake
+	//presstab Element
 	bool EraseMSDisabledAddresses(std::vector<std::string> vDisabledAddresses)
 	{
 		nWalletDBUpdated++;
@@ -170,13 +170,13 @@ public:
 		}
 		return ret;
 	}
-	//presstab HyperStake
+	//presstab Element
 	bool WriteHashDrift(unsigned int nHashDrift)
 	{
 		nWalletDBUpdated++;
 		return Write(std::string("hashdrift"), nHashDrift, true);
 	}
-	//presstab HyperStake
+	//presstab Element
 	bool WriteHashInterval(unsigned int nHashInterval)
 	{
 		nWalletDBUpdated++;

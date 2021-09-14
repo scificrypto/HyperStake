@@ -21,14 +21,14 @@
 *.app
 
 
-# hyperstake stuff
+# element stuff
 
 object_script.*
 .DS_Store
-hyperstake-qt
-hyperstake-qt.exe
-hyperstaked
-hyperstaked.exe
+element-qt
+element-qt.exe
+elementd
+elementd.exe
 qrc_bitcoin.cpp
 build/*
 release/*
@@ -37,7 +37,7 @@ makefile.debug
 makefile
 Makefile
 src/Makefile
-HyperStake-qt.pro.user
+Element-qt.pro.user
 autom4te.cache
 aclocal.m4
 configure
@@ -87,14 +87,14 @@ src/qt/forms/ui_blockbrowser.h
 src/qt/forms/ui_calcdialog.h
 src/qt/forms/ui_charitydialog.h
 moc_macnotificationhandler.cpp
-hyperstake/hyperstake.xcodeproj
+element/element.xcodeproj
 build-aux/m4/libtool.m4
 build-aux/m4/ltoptions.m4
 build-aux/m4/ltsugar.m4
 build-aux/m4/ltversion.m4
 build-aux/m4/lt~obsolete.m4
 moc_paymentserver.cpp
-Hyperstake-Qt.dmg
+Element-Qt.dmg
 
 ../log.0000000001
 log.0000000001

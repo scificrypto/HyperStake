@@ -1,5 +1,5 @@
 ---
-name: "hyperstake-linux-1.1"
+name: "element-linux-1.1"
 enable_cache: true
 suites:
 - "precise"
@@ -18,8 +18,8 @@ packages:
 - "libstdc++6-4.6-pic"
 reference_datetime: "2013-06-01 00:00:00"
 remotes:
-- "url": "https://github.com/hyperstake/hyperstake.git"
-  "dir": "hyperstake"
+- "url": "https://github.com/element/element.git"
+  "dir": "element"
 files: []
 script: |
   WRAP_DIR=$HOME/wrapped
@@ -82,7 +82,7 @@ script: |
   ./autogen.sh
   ./configure --prefix=${BASEPREFIX}/`echo "${HOSTS}" | awk '{print $1;}'`
   make dist
-  SOURCEDIST=`echo hyperstake-*.tar.gz`
+  SOURCEDIST=`echo element-*.tar.gz`
   DISTNAME=`echo ${SOURCEDIST} | sed 's/.tar.*//'`
   # Correct tar file order
   mkdir -p temp

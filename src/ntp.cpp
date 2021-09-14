@@ -512,7 +512,7 @@ void ThreadNtpSamples(void* parg) {
             std::string strMessage = _("Warning: Please check that your computer's date and time are correct! If your clock is wrong TEKCoin will not work properly.");
             strMiscWarning = strMessage;
             printf("*** %s\n", strMessage.c_str());
-            uiInterface.ThreadSafeMessageBox(strMessage+" ", std::string("HyperStake"), CClientUIInterface::OK | CClientUIInterface::ICON_ETRKLAMATION);
+            uiInterface.ThreadSafeMessageBox(strMessage+" ", std::string("Element"), CClientUIInterface::OK | CClientUIInterface::ICON_ETRKLAMATION);
         }
 
         printf("nNtpOffset = %+" PRI64d "  (%+" PRI64d " minutes)\n", nNtpOffset, nNtpOffset/60);

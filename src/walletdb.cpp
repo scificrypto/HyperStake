@@ -383,11 +383,11 @@ ReadKeyValue(CWallet* pwallet, CDataStream& ssKey, CDataStream& ssValue,
         {
             ssValue >> pwallet->nOrderPosNext;
         }
-		else if (strType == "stakeSplitThreshold") //presstab HyperStake
+		else if (strType == "stakeSplitThreshold") //presstab Element
 		{
             ssValue >> pwallet->nStakeSplitThreshold;
 		}
-		else if (strType == "multisend") //presstab HyperStake
+		else if (strType == "multisend") //presstab Element
 		{
 			unsigned int i;
 			ssKey >> i;
@@ -398,7 +398,7 @@ ReadKeyValue(CWallet* pwallet, CDataStream& ssKey, CDataStream& ssValue,
 				pwallet->vMultiSend.push_back(pMultiSend);
 			}
 		}
-		else if(strType == "msettings")//presstab HyperStake
+		else if(strType == "msettings")//presstab Element
 		{
 		   std::pair<bool, int> pSettings;
 		   ssValue >> pSettings;
@@ -411,25 +411,25 @@ ReadKeyValue(CWallet* pwallet, CDataStream& ssKey, CDataStream& ssValue,
 			ssValue >> fMultiSendCoinStake;
 			pwallet->fMultiSendCoinStake = fMultiSendCoinStake;
 		}
-		else if(strType == "mdisabled")//presstab HyperStake
+		else if(strType == "mdisabled")//presstab Element
 		{
 		   std::string strDisabledAddress;
 		   ssValue >> strDisabledAddress;
 		   pwallet->vDisabledAddresses.push_back(strDisabledAddress);
 		}
-		else if(strType == "hashdrift")//presstab HyperStake
+		else if(strType == "hashdrift")//presstab Element
 		{
 		   unsigned int nHashDrift;
 		   ssValue >> nHashDrift;
 		   pwallet->nHashDrift = nHashDrift;
 		}
-		else if(strType == "hashinterval")//presstab HyperStake
+		else if(strType == "hashinterval")//presstab Element
 		{
 		   unsigned int nHashInterval;
 		   ssValue >> nHashInterval;
 		   pwallet->nHashInterval = nHashInterval;
 		}
-		else if(strType == "combinedust")//presstab HyperStake
+		else if(strType == "combinedust")//presstab Element
 		{
 		   bool fCombineDust;
 		   ssValue >> fCombineDust;
