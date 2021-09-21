@@ -97,8 +97,9 @@ BitcoinGUI::BitcoinGUI(const NetworkStyle * networkStyle, QWidget *parent):
     setFixedSize(765,710);
     //Creating font directory and establishing global font preference
     QFontDatabase::addApplicationFont(":/fonts/Lato");
-    QFont font("Lato");
+    QFont font("Lato", 10);
     QApplication::setFont(font);
+    //QApplication::setStyleSheet ( const QString & sheet )
 
 //    setMaximumSize(750,750);
 //    resize(800, 800);
@@ -484,8 +485,11 @@ void BitcoinGUI::createToolBars()
     QToolBar *toolbar = addToolBar(tr("Tabs toolbar"));
     toolbar->setObjectName("toolbar");
     toolbar->setMovable( false );
-    //toolbar->setStyleSheet("#toolbar { border:0px; height:100%; padding-top: px; background: transparent; text-align: center; color: ;min-width: px; max-width: px;} QToolBar QToolButton:hover {background-color: #3ddc97;} QToolBar QToolButton:selected {background-color: grey;} QToolBar QToolButton:checked {background-color: transparent;} QToolBar QToolButton:pressed {background-color: transparent;} QToolBar QToolButton { margin: 0px; background-image:url(:images/toolbtn); font-family:'Bebas'; font-size:12px; min-width:100px;max-width:100px; min-height:49px;max-height:49px; color: white; text-align: center; margin-left: 1px; }");
-    toolbar->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
+    toolbar->setStyleSheet("#toolbar { padding-left: 10px; border:0px; height:100%; text-align: center;} QToolBar QToolButton { margin: 0px; min-width:146px; max-width:146px; min-height:30px; max-height:30px; text-align: center; }");
+    //toolbar->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
+    
+    //below replaces the icons and text menu labels for text only
+    toolbar->setToolButtonStyle(Qt::ToolButtonTextOnly);
     toolbar->addAction(overviewAction);
     toolbar->addAction(sendCoinsAction);
     toolbar->addAction(receiveCoinsAction);
