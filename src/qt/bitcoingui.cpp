@@ -63,6 +63,8 @@
 #include <QDesktopServices>
 #include <QTimer>
 #include <QDragEnterEvent>
+#include <QFont>
+#include <QFontDatabase>
 
 #if QT_VERSION < 0x050000
 #include <QUrl>
@@ -93,10 +95,15 @@ BitcoinGUI::BitcoinGUI(const NetworkStyle * networkStyle, QWidget *parent):
     rpcConsole(0)
 {
     setFixedSize(765,710);
+    //Creating font directory and establishing global font preference
+    QFontDatabase::addApplicationFont(":/fonts/Lato");
+    QFont font("Lato");
+    QApplication::setFont(font);
+
 //    setMaximumSize(750,750);
 //    resize(800, 800);
     
-    QString windowTitle = tr("Element") + " " + tr("Wallet");
+    QString windowTitle = tr("Element") + " " + tr("HYP") + " " + tr("Wallet");
     windowTitle += " " + networkStyle->getTitleAddText();
 #ifndef Q_OS_MAC
     QApplication::setWindowIcon(networkStyle->getTrayAndWindowIcon());
