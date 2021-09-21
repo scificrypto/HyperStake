@@ -58,7 +58,7 @@
    <item>
     <widget class="QCheckBox" name="deleteCheckBox">
      <property name="text">
-      <string>Enable Deletion of Receive Address - KEYS WILL BE LOST FOR THE ADDRESS : BACK UP WALLET FIRST!</string>
+      <string>Enable Deletion of Receive Address. Backup the wallet first, as keys for the address will be lost.</string>
      </property>
     </widget>
    </item>

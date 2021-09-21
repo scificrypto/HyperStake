@@ -41,6 +41,11 @@
      <height>119</height>
     </rect>
    </property>
+   <property name="font">
+    <font>
+     <pointsize>10</pointsize>
+    </font>
+   </property>
    <property name="cursor">
     <cursorShape>IBeamCursor</cursorShape>
    </property>
@@ -65,6 +70,11 @@ Copyright © 2021 Element (HYP) Developers
      <width>328</width>
      <height>187</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>10</pointsize>
+    </font>
    </property>
    <property name="cursor">
     <cursorShape>IBeamCursor</cursorShape>
@@ -107,6 +117,11 @@ This product includes software developed by the OpenSSL Project for use in the O
      <height>17</height>
     </rect>
    </property>
+   <property name="font">
+    <font>
+     <pointsize>10</pointsize>
+    </font>
+   </property>
    <property name="cursor">
     <cursorShape>IBeamCursor</cursorShape>
    </property>
@@ -125,6 +140,11 @@ This product includes software developed by the OpenSSL Project for use in the O
      <width>86</width>
      <height>17</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>10</pointsize>
+    </font>
    </property>
    <property name="cursor">
     <cursorShape>IBeamCursor</cursorShape>

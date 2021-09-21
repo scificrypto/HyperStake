@@ -97,7 +97,7 @@ BitcoinGUI::BitcoinGUI(const NetworkStyle * networkStyle, QWidget *parent):
     setFixedSize(765,710);
     //Creating font directory and establishing global font preference
     QFontDatabase::addApplicationFont(":/fonts/Lato");
-    QFont font("Lato", 10);
+    QFont font("Lato", 11);
     QApplication::setFont(font);
     //QApplication::setStyleSheet ( const QString & sheet )
 
