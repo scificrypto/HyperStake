@@ -97,7 +97,7 @@ BitcoinGUI::BitcoinGUI(const NetworkStyle * networkStyle, QWidget *parent):
     setFixedSize(765,710);
     //Creating font directory and establishing global font preference
     QFontDatabase::addApplicationFont(":/fonts/Lato");
-    QFont font("Lato", 11);
+    QFont font("Lato", 10);
     QApplication::setFont(font);
     //QApplication::setStyleSheet ( const QString & sheet )
 
@@ -664,7 +664,7 @@ void BitcoinGUI::setNumConnections(int count)
     default: icon = ":/icons/connect_4"; break;
     }
     labelConnectionsIcon->setPixmap(QIcon(icon).pixmap(STATUSBAR_ICONSIZE,STATUSBAR_ICONSIZE));
-    labelConnectionsIcon->setToolTip(tr("%n active connection(s) to Element network", "", count));
+    labelConnectionsIcon->setToolTip(tr("%n active connection(s) to Element (HYP) network", "", count));
 }
 
 void BitcoinGUI::setNumBlocks(int count, int nTotalBlocks)

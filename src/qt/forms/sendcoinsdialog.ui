@@ -120,7 +120,7 @@
           <item>
            <widget class="QLabel" name="labelCoinControlAutomaticallySelected">
             <property name="text">
-             <string>Low Priority Coins Automatically Selected</string>
+             <string>Low priority coins are automatically selected</string>
             </property>
             <property name="margin">
              <number>5</number>
@@ -577,7 +577,7 @@
           <item>
            <widget class="QCheckBox" name="splitBlockCheckBox">
             <property name="text">
-             <string>SplitBlock</string>
+             <string>Split Block</string>
             </property>
            </widget>
           </item>
