@@ -104,7 +104,7 @@ BitcoinGUI::BitcoinGUI(const NetworkStyle * networkStyle, QWidget *parent):
 //    setMaximumSize(750,750);
 //    resize(800, 800);
     
-    QString windowTitle = tr("Element") + " " + tr("HYP") + " " + tr("Wallet");
+    QString windowTitle = tr("Element") + " " + tr("(HYP)") + " " + tr("Wallet");
     windowTitle += " " + networkStyle->getTitleAddText();
 #ifndef Q_OS_MAC
     QApplication::setWindowIcon(networkStyle->getTrayAndWindowIcon());

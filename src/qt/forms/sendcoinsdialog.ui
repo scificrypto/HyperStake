@@ -51,10 +51,10 @@
        <number>0</number>
       </property>
       <property name="bottomMargin">
-       <number>6</number>
+       <number>0</number>
       </property>
       <item>
-       <layout class="QVBoxLayout" name="verticalLayoutCoinControl" stretch="0,0,0,0,1">
+       <layout class="QVBoxLayout" name="verticalLayoutCoinControl" stretch="0,0,0,0,0,0,1">
         <property name="spacing">
          <number>0</number>
         </property>
@@ -64,10 +64,16 @@
         <property name="topMargin">
          <number>10</number>
         </property>
+        <property name="rightMargin">
+         <number>10</number>
+        </property>
+        <property name="bottomMargin">
+         <number>9</number>
+        </property>
         <item>
          <layout class="QHBoxLayout" name="horizontalLayoutCoinControl1">
           <property name="bottomMargin">
-           <number>15</number>
+           <number>3</number>
           </property>
           <item>
            <widget class="QLabel" name="labelCoinControlFeatures">
@@ -99,7 +105,7 @@
            <number>8</number>
           </property>
           <property name="bottomMargin">
-           <number>10</number>
+           <number>1</number>
           </property>
           <item>
            <widget class="QPushButton" name="pushButtonCoinControl">
@@ -194,7 +200,7 @@
               <number>0</number>
              </property>
              <property name="bottomMargin">
-              <number>10</number>
+              <number>1</number>
              </property>
              <item>
               <layout class="QFormLayout" name="formLayoutCoinControl1">
@@ -552,7 +558,7 @@
          </widget>
         </item>
         <item>
-         <layout class="QHBoxLayout" name="horizontalLayoutCoinControl4" stretch="0,0,0,0,0,0,0,0">
+         <layout class="QHBoxLayout" name="horizontalLayoutCoinControl4" stretch="0,0,0,0,0,0">
           <property name="spacing">
            <number>3</number>
           </property>
@@ -564,6 +570,9 @@
           </property>
           <property name="rightMargin">
            <number>0</number>
+          </property>
+          <property name="bottomMargin">
+           <number>5</number>
           </property>
           <item>
            <widget class="QCheckBox" name="splitBlockCheckBox">
@@ -625,26 +634,6 @@
            </widget>
           </item>
           <item>
-           <widget class="QCheckBox" name="checkBoxCoinControlChange">
-            <property name="text">
-             <string>Change Address</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QLineEdit" name="lineEditCoinControlChange">
-            <property name="enabled">
-             <bool>false</bool>
-            </property>
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-           </widget>
-          </item>
-          <item>
            <widget class="QLabel" name="labelCoinControlChangeLabel">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
@@ -667,6 +656,26 @@
            </widget>
           </item>
          </layout>
+        </item>
+        <item>
+         <widget class="QCheckBox" name="checkBoxCoinControlChange">
+          <property name="text">
+           <string>Change Address</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLineEdit" name="lineEditCoinControlChange">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+         </widget>
         </item>
         <item>
          <spacer name="verticalSpacerCoinControl">
@@ -697,7 +706,7 @@
         <x>0</x>
         <y>0</y>
         <width>830</width>
-        <height>156</height>
+        <height>132</height>
        </rect>
       </property>
       <layout class="QVBoxLayout" name="verticalLayout_2">
