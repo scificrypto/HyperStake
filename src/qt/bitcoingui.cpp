@@ -343,7 +343,7 @@ void BitcoinGUI::createActions()
     votingAction->setStatusTip(tr("Set and View Vote Proposals and Settings"));
     votingAction->setToolTip(votingAction->statusTip());
 
-    aboutQtAction = new QAction(QIcon(":/trolltech/qmessagebox/images/qtlogo-64.png"), tr("About &Qt"), this);
+    aboutQtAction = new QAction(QIcon(":/icons/qtlogo-64"), tr("About &Qt"), this);
     aboutQtAction->setToolTip(tr("Show information about Qt"));
     aboutQtAction->setMenuRole(QAction::AboutQtRole);
     optionsAction = new QAction(QIcon(":/icons/options"), tr("&Options..."), this);
