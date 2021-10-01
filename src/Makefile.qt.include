@@ -243,6 +243,7 @@ endif
 RES_IMAGES = \
   qt/res/images/about.png \
   qt/res/images/splash.png \
+  qt/res/images/ccicon.png \
   qt/res/images/wallet.png
 
 RES_STYLESHEETS =

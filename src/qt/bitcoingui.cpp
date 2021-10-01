@@ -169,6 +169,8 @@ BitcoinGUI::BitcoinGUI(const NetworkStyle * networkStyle, QWidget *parent):
 	centralWidget->addWidget(stakeForCharityDialog);
     setCentralWidget(centralWidget);
 
+    
+    
     // Create status bar
     statusBar();
 
@@ -213,7 +215,7 @@ BitcoinGUI::BitcoinGUI(const NetworkStyle * networkStyle, QWidget *parent):
 	nAmount = 0;
 
     // Progress bar and label for blocks download
-    progressBarLabel = new QLabel();
+    progressBarLabel = new QLabel(); 
     progressBarLabel->setVisible(false);
     progressBar = new QProgressBar();
     progressBar->setAlignment(Qt::AlignCenter);
@@ -688,12 +690,13 @@ void BitcoinGUI::setNumBlocks(int count, int nTotalBlocks)
 
         if (strStatusBarWarnings.isEmpty())
         {
-            progressBarLabel->setText(tr("Synchronizing..."));
+            progressBarLabel->setText(tr(" Synchronizing..."));
             progressBarLabel->setVisible(true);
             progressBar->setFormat(tr("~%n block(s) remaining", "", nRemainingBlocks));
             progressBar->setMaximum(nTotalBlocks);
             progressBar->setValue(count);
             progressBar->setVisible(true);
+            progressBar->setStyleSheet("QProgressBar { background-color: grey; border: 0px solid grey; border-radius: 0px; padding: 0px; text-align: center; color: white; width: 588px; margin-right: 5px; } QProgressBar::chunk { background: QLinearGradient(x1: 0, y1: 0, x2: 1, y2: 0, stop: 0 #3ddc97, stop: 1 #1351d8); border-radius: 0px; margin: 0px; }");
         }
 
         tooltip = tr("Downloaded %1 of %2 blocks of transaction history (%3% done).").arg(count).arg(nTotalBlocks).arg(nPercentageDone, 0, 'f', 2);
@@ -701,7 +704,12 @@ void BitcoinGUI::setNumBlocks(int count, int nTotalBlocks)
     else
     {
         if (strStatusBarWarnings.isEmpty())
-            progressBarLabel->setVisible(false);
+
+            //progressBarLabel->setText(tr(" Crypto-city.com"));
+            progressBarLabel->setPixmap(QIcon(":/images/ccicon").pixmap(147,32));
+            progressBarLabel->setVisible(true);
+            //progressBarLabel->setStyleSheet("QLabel { background-image: url(:images/ccicon.png); border: 0px solid grey; border-radius: 0px; padding: 0px; text-align: center; color: blue; width: 200px; margin-right: 5px; }");
+
 
         progressBar->setVisible(false);
         tooltip = tr("Downloaded %1 blocks of transaction history.").arg(count);
