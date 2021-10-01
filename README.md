@@ -45,14 +45,6 @@ See the element site:
   https://www.crypto-city.com/index.php/element-hyp-ann/info
 for help and more information.
 
-Wallet themes
--------
-
-| HyperBlue     | PoloniexNight | PoloniexDay   |
-| ------------- | ------------- | ------------- |
-| [![HyperBlue](https://github.com/zeewolfik/Element/raw/master/src/qt/res/screenshots/element-hyperblue-theme-th.png)](https://github.com/zeewolfik/Element/raw/master/src/qt/res/screenshots/element-hyperblue-theme.png) | [![PoloniexNight](https://github.com/zeewolfik/Element/raw/master/src/qt/res/screenshots/element-poloniexnight-theme-th.png)](https://github.com/zeewolfik/Element/raw/master/src/qt/res/screenshots/element-poloniexnight-theme.png) | [![PoloniexNight](https://github.com/zeewolfik/Element/raw/master/src/qt/res/screenshots/element-poloniexday-theme-th.png)](https://github.com/zeewolfik/Element/raw/master/src/qt/res/screenshots/element-poloniexday-theme.png) |
-
-
 Build Instructions (Linux)
 -------
 ### Dependencies required for Element with or without GUI:
