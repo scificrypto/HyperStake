@@ -39,7 +39,7 @@ but allowing incoming connections helps the element network.
 
 Upgrade
 -------
-All you existing coins/transactions should be intact with the upgrade.
+All your existing coins/transactions should be intact with the upgrade.
 To upgrade first backup wallet
 elementd backupwallet <destination_backup_file>
 Then shutdown elementd by
