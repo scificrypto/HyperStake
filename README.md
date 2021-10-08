@@ -16,7 +16,7 @@ cryptographic software written by Eric Young (eay@cryptsoft.com).
 
 Intro
 -----
-Element (HYP) is the facelift of HyperStake (HYP). It is 
+Element (HYP) is a Crypto-city rendition of HyperStake (HYP). It is 
 is a free open source project derived from NovaCoin, with
 the goal of providing a long-term energy-efficient Proof of Stake (PoS) based crypto-currency.
 Built on the foundation of Bitcoin and NovaCoin, innovations such as proof-of-stake
