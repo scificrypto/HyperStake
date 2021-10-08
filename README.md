@@ -1,9 +1,11 @@
+![Image of bitFlowers Logo](https://element-hyp.com/assets/images/github.png)
+
 # Element (HYP)
 
-Copyright (c) 2021 Element (HYP) Developers
-Copyright (c) 2013-2021 HyperStake (HYP) Developers
-Copyright (c) 2013 NovaCoin Developers
-Copyright (c) 2011-2012 Bitcoin Developers
+Copyright (c) 2021 Element (HYP) Developers<br/>
+Copyright (c) 2013-2021 HyperStake (HYP) Developers<br/>
+Copyright (c) 2013 NovaCoin Developers<br/>
+Copyright (c) 2011-2012 Bitcoin Developers<br/>
 
 Distributed under the MIT/X11 software license, see the accompanying
 file license.txt or http://www.opensource.org/licenses/mit-license.php.
@@ -22,9 +24,9 @@ help further advance the field of crypto-currency.
 
 Setup
 -----
-Unpack the files into a directory and run:
- bin/32/elementd (headless, 32-bit)
- bin/64/elementd (headless, 64-bit)
+Unpack the files into a directory and run:<br/>
+ bin/32/elementd (headless, 32-bit)<br/>
+ bin/64/elementd (headless, 64-bit)<br/>
 
 The software automatically finds other nodes to connect to.  You can
 enable Universal Plug and Play (UPnP) with your router/firewall
