@@ -1,4 +1,4 @@
-![Image of bitFlowers Logo](https://element-hyp.com/assets/images/github.png)
+![Image of bitFlowers Logo](https://element-hyp.com/assets/images/github_header.png)
 
 # Element (HYP)
 
