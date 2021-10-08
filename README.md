@@ -48,7 +48,7 @@ Start up the new elementd.
 
 
 See the element site:
-  https://www.crypto-city.com/index.php/element-hyp-ann/info
+  https://www.crypto-city.com/index.php/element-hyp/info
 for help and more information.
 
 Build Instructions (Linux)
