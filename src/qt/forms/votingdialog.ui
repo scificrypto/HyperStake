@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>HyperStake Voting System</string>
+   <string>Element Voting System</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>

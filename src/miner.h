@@ -1,5 +1,5 @@
-#ifndef HYPERSTAKE_MINER_H
-#define HYPERSTAKE_MINER_H
+#ifndef ELEMENT_MINER_H
+#define ELEMENT_MINER_H
 
 class CBlock;
 class CWallet;
@@ -8,4 +8,4 @@ void BitcoinMiner(CWallet *pwallet, bool fProofOfStake);
 CBlock* CreateNewBlock(CWallet* pwallet, bool fProofOfStake);
 void ThreadBitcoinMiner(void* parg);
 
-#endif //HYPERSTAKE_MINER_H
+#endif //ELEMENT_MINER_H

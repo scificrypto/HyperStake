@@ -13,6 +13,6 @@ i686-w64-mingw32.static-qmake-qt5 \
 	BDB_LIB_PATH=$MXE_LIB_PATH \
 	MINIUPNPC_INCLUDE_PATH=$MXE_INCLUDE_PATH \
 	MINIUPNPC_LIB_PATH=$MXE_LIB_PATH \
-        QMAKE_LRELEASE=/home/pt/workspace/mxe/usr/i686-w64-mingw32.static/qt5/bin/lrelease HyperStake-qt.pro
+        QMAKE_LRELEASE=/home/pt/workspace/mxe/usr/i686-w64-mingw32.static/qt5/bin/lrelease Element-qt.pro
 
 make -j6 -f Makefile.Release

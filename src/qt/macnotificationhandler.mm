@@ -13,7 +13,7 @@
 - (NSString *)__bundleIdentifier
 {
     if (self == [NSBundle mainBundle]) {
-        return @"org.hyperstake.HyperStake-Qt";
+        return @"org.element.Element-Qt";
     } else {
         return [self __bundleIdentifier];
     }

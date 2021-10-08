@@ -245,7 +245,7 @@ Value getblockbynumber(const Array& params, bool fHelp)
     return blockToJSON(block, pblockindex, params.size() > 1 ? params[1].get_bool() : false);
 }
 
-// presstab HyperStake
+// presstab Element
 Value exportdifficulty(const Array& params, bool fHelp)
 {
     if (fHelp || params.size() < 1 || params.size() > 2)
@@ -271,7 +271,7 @@ Value exportdifficulty(const Array& params, bool fHelp)
     return "succesfully exported";
 }
 
-// presstab HyperStake
+// presstab Element
 Value listblocks(const Array& params, bool fHelp)
 {
     if (fHelp || params.size() != 2)

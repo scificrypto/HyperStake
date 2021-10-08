@@ -7,25 +7,25 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleGetInfoString</key>
-	<string>HyperStake-Qt</string>
+	<string>Element-Qt</string>
 	<key>CFBundleShortVersionString</key>
 	<string>@CLIENT_VERSION_MAJOR@.@CLIENT_VERSION_MINOR@</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleExecutable</key>
-	<string>Hyperstake-Qt</string>
+	<string>Element-Qt</string>
 	<key>CFBundleIdentifier</key>
-	<string>info.hyperstake.Hyperstake-Qt</string>
+	<string>info.element.Element-Qt</string>
         <key>CFBundleURLTypes</key>
         <array>
           <dict>
             <key>CFBundleTypeRole</key>
             <string>Editor</string>
             <key>CFBundleURLName</key>
-            <string>info.hyperstake.HyperstakePayment</string>
+            <string>info.element.ElementPayment</string>
             <key>CFBundleURLSchemes</key>
             <array>
-              <string>hyperstake</string>
+              <string>element</string>
             </array>
           </dict>
         </array>

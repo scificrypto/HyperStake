@@ -1,9 +1,9 @@
-// Copyright (c) 2017 The HyperStake Developers
+// Copyright (c) 2017 The Element Developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef HYPERSTAKE_VOTEPROPOSALMANAGER_H
-#define HYPERSTAKE_VOTEPROPOSALMANAGER_H
+#ifndef ELEMENT_VOTEPROPOSALMANAGER_H
+#define ELEMENT_VOTEPROPOSALMANAGER_H
 
 #include <set>
 #include "voteobject.h"
@@ -31,4 +31,4 @@ public:
     bool CheckProposal (const CVoteProposal& proposal);
 };
 
-#endif //HYPERSTAKE_VOTEPROPOSALMANAGER_H
+#endif //ELEMENT_VOTEPROPOSALMANAGER_H

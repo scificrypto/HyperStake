@@ -29,7 +29,6 @@
 #include "notificator.h"
 #include "guiutil.h"
 #include "rpcconsole.h"
-#include "resources.h"
 #include "wallet.h"
 #include "bitcoinrpc.h"
 #include "blockbrowser.h"
@@ -64,6 +63,8 @@
 #include <QDesktopServices>
 #include <QTimer>
 #include <QDragEnterEvent>
+#include <QFont>
+#include <QFontDatabase>
 
 #if QT_VERSION < 0x050000
 #include <QUrl>
@@ -94,10 +95,16 @@ BitcoinGUI::BitcoinGUI(const NetworkStyle * networkStyle, QWidget *parent):
     rpcConsole(0)
 {
     setFixedSize(765,710);
+    //Creating font directory and establishing global font preference
+    QFontDatabase::addApplicationFont(":/fonts/Lato");
+    QFont font("Lato", 10);
+    QApplication::setFont(font);
+    //QApplication::setStyleSheet ( const QString & sheet )
+
 //    setMaximumSize(750,750);
 //    resize(800, 800);
     
-    QString windowTitle = tr("HyperStake") + " " + tr("Wallet");
+    QString windowTitle = tr("Element") + " " + tr("(HYP)") + " " + tr("Wallet");
     windowTitle += " " + networkStyle->getTitleAddText();
 #ifndef Q_OS_MAC
     QApplication::setWindowIcon(networkStyle->getTrayAndWindowIcon());
@@ -130,7 +137,7 @@ BitcoinGUI::BitcoinGUI(const NetworkStyle * networkStyle, QWidget *parent):
     // Create the toolbars
     createToolBars();
 
-    // Create the tray icon (or setup the dock icon) abffaaassffffa
+    // Create the tray icon (or setup the dock icon) 
     createTrayIcon(networkStyle);
 
     // Create tabs
@@ -150,7 +157,7 @@ BitcoinGUI::BitcoinGUI(const NetworkStyle * networkStyle, QWidget *parent):
 	stakeForCharityDialog = new StakeForCharityDialog(this);
 	blockBrowser = new BlockBrowser((this));
     votingDialog = new VotingDialog(this);
-    resourcesPage = new ReSources(this);
+
 
 	
     centralWidget = new QStackedWidget(this);
@@ -160,9 +167,10 @@ BitcoinGUI::BitcoinGUI(const NetworkStyle * networkStyle, QWidget *parent):
     centralWidget->addWidget(receiveCoinsPage);
     centralWidget->addWidget(sendCoinsPage);
 	centralWidget->addWidget(stakeForCharityDialog);
-    centralWidget->addWidget(resourcesPage);
     setCentralWidget(centralWidget);
 
+    
+    
     // Create status bar
     statusBar();
 
@@ -207,7 +215,7 @@ BitcoinGUI::BitcoinGUI(const NetworkStyle * networkStyle, QWidget *parent):
 	nAmount = 0;
 
     // Progress bar and label for blocks download
-    progressBarLabel = new QLabel();
+    progressBarLabel = new QLabel(); 
     progressBarLabel->setVisible(false);
     progressBar = new QProgressBar();
     progressBar->setAlignment(Qt::AlignCenter);
@@ -225,6 +233,7 @@ BitcoinGUI::BitcoinGUI(const NetworkStyle * networkStyle, QWidget *parent):
     statusBar()->addWidget(progressBarLabel);
     statusBar()->addWidget(progressBar);
     statusBar()->addPermanentWidget(frameBlocks);
+    statusBar()->setSizeGripEnabled(false);
 
     syncIconMovie = new QMovie(":/movies/update_spinner", "mng", this);
     miningIconMovie = new QMovie(":/movies/mining", "mng", this);
@@ -274,7 +283,7 @@ void BitcoinGUI::createActions()
     tabGroup->addAction(overviewAction);
 
     sendCoinsAction = new QAction(QIcon(":/icons/send"), tr("&Send"), this);
-    sendCoinsAction->setToolTip(tr("Send coins to a HyperStake address"));
+    sendCoinsAction->setToolTip(tr("Send coins to a Element address"));
     sendCoinsAction->setCheckable(true);
     sendCoinsAction->setShortcut(QKeySequence(Qt::ALT + Qt::Key_2));
     tabGroup->addAction(sendCoinsAction);
@@ -297,10 +306,6 @@ void BitcoinGUI::createActions()
     addressBookAction->setShortcut(QKeySequence(Qt::ALT + Qt::Key_5));
     tabGroup->addAction(addressBookAction);
 
-    resourcesAction = new QAction(QIcon(":/icons/res/icons/resources.png"), tr("&Resources"), this);
-    resourcesAction ->setToolTip(tr("Information and links about HyperStake "));
-    resourcesAction ->setCheckable(true);
-    tabGroup->addAction(resourcesAction);
 
     connect(overviewAction, SIGNAL(triggered()), this, SLOT(showNormalIfMinimized()));
     connect(overviewAction, SIGNAL(triggered()), this, SLOT(gotoOverviewPage()));
@@ -312,16 +317,14 @@ void BitcoinGUI::createActions()
     connect(historyAction, SIGNAL(triggered()), this, SLOT(gotoHistoryPage()));
     connect(addressBookAction, SIGNAL(triggered()), this, SLOT(showNormalIfMinimized()));
     connect(addressBookAction, SIGNAL(triggered()), this, SLOT(gotoAddressBookPage()));
-    connect(resourcesAction, SIGNAL(triggered()), this, SLOT(showNormalIfMinimized()));
-    connect(resourcesAction, SIGNAL(triggered()), this, SLOT(gotoReSourcesPage()));
 	
 
     quitAction = new QAction(QIcon(":/icons/quit"), tr("E&xit"), this);
     quitAction->setToolTip(tr("Quit application"));
     quitAction->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_Q));
     quitAction->setMenuRole(QAction::QuitRole);
-    aboutAction = new QAction(QIcon(":/icons/bitcoin"), tr("&About HyperStake"), this);
-    aboutAction->setToolTip(tr("Show information about HyperStake"));
+    aboutAction = new QAction(QIcon(":/icons/bitcoin"), tr("&About Element"), this);
+    aboutAction->setToolTip(tr("Show information about Element"));
     aboutAction->setMenuRole(QAction::AboutRole);
 
     charityAction = new QAction(QIcon(":/icons/s4c"), tr("&MultiSend"), this);
@@ -342,11 +345,11 @@ void BitcoinGUI::createActions()
     votingAction->setStatusTip(tr("Set and View Vote Proposals and Settings"));
     votingAction->setToolTip(votingAction->statusTip());
 
-    aboutQtAction = new QAction(QIcon(":/trolltech/qmessagebox/images/qtlogo-64.png"), tr("About &Qt"), this);
+    aboutQtAction = new QAction(QIcon(":/icons/qtlogo-64"), tr("About &Qt"), this);
     aboutQtAction->setToolTip(tr("Show information about Qt"));
     aboutQtAction->setMenuRole(QAction::AboutQtRole);
     optionsAction = new QAction(QIcon(":/icons/options"), tr("&Options..."), this);
-    optionsAction->setToolTip(tr("Modify configuration options for HyperStake"));
+    optionsAction->setToolTip(tr("Modify configuration options for Element"));
     optionsAction->setMenuRole(QAction::PreferencesRole);
     toggleHideAction = new QAction(QIcon(":/icons/bitcoin"), tr("&Show / Hide"), this);
     encryptWalletAction = new QAction(QIcon(":/icons/lock_closed"), tr("&Encrypt Wallet..."), this);
@@ -482,13 +485,21 @@ void BitcoinGUI::createMenuBar()
 void BitcoinGUI::createToolBars()
 {
     QToolBar *toolbar = addToolBar(tr("Tabs toolbar"));
-    toolbar->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
+    toolbar->setObjectName("toolbar");
+    toolbar->setMovable( false );
+    toolbar->setStyleSheet("#toolbar { padding-left: 10px; border:0px; height:100%; text-align: center;} QToolBar QToolButton { margin: 0px; min-width:146px; max-width:146px; min-height:30px; max-height:30px; text-align: center; }");
+    //toolbar->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
+    
+    //below replaces the icons and text menu labels for text only
+    toolbar->setToolButtonStyle(Qt::ToolButtonTextOnly);
     toolbar->addAction(overviewAction);
     toolbar->addAction(sendCoinsAction);
     toolbar->addAction(receiveCoinsAction);
     toolbar->addAction(historyAction);
     toolbar->addAction(addressBookAction);
-    toolbar->addAction(resourcesAction);
+
+
+
 /*	toolbar->addAction(charityAction);
 
     QToolBar *toolbar2 = addToolBar(tr("Actions toolbar"));
@@ -560,7 +571,7 @@ void BitcoinGUI::createTrayIcon(const NetworkStyle *networkStyle)
 {
 #ifndef Q_OS_MAC
     trayIcon = new QSystemTrayIcon(this);
-    QString toolTip = tr("HyperStake client") + " " + networkStyle->getTitleAddText();
+    QString toolTip = tr("Element client") + " " + networkStyle->getTitleAddText();
     trayIcon->setToolTip(toolTip);
     trayIcon->setIcon(networkStyle->getTrayAndWindowIcon());
     trayIcon->show();
@@ -655,7 +666,7 @@ void BitcoinGUI::setNumConnections(int count)
     default: icon = ":/icons/connect_4"; break;
     }
     labelConnectionsIcon->setPixmap(QIcon(icon).pixmap(STATUSBAR_ICONSIZE,STATUSBAR_ICONSIZE));
-    labelConnectionsIcon->setToolTip(tr("%n active connection(s) to HyperStake network", "", count));
+    labelConnectionsIcon->setToolTip(tr("%n active connection(s) to Element (HYP) network", "", count));
 }
 
 void BitcoinGUI::setNumBlocks(int count, int nTotalBlocks)
@@ -679,12 +690,13 @@ void BitcoinGUI::setNumBlocks(int count, int nTotalBlocks)
 
         if (strStatusBarWarnings.isEmpty())
         {
-            progressBarLabel->setText(tr("Synchronizing..."));
+            progressBarLabel->setText(tr(" Synchronizing..."));
             progressBarLabel->setVisible(true);
             progressBar->setFormat(tr("~%n block(s) remaining", "", nRemainingBlocks));
             progressBar->setMaximum(nTotalBlocks);
             progressBar->setValue(count);
             progressBar->setVisible(true);
+            progressBar->setStyleSheet("QProgressBar { background-color: grey; border: 0px solid grey; border-radius: 0px; padding: 0px; text-align: center; color: white; width: 550px; } QProgressBar::chunk { background: QLinearGradient(x1: 0, y1: 0, x2: 1, y2: 0, stop: 0 #3ddc97, stop: 1 #1351d8); border-radius: 0px; margin: 0px; }");
         }
 
         tooltip = tr("Downloaded %1 of %2 blocks of transaction history (%3% done).").arg(count).arg(nTotalBlocks).arg(nPercentageDone, 0, 'f', 2);
@@ -692,7 +704,12 @@ void BitcoinGUI::setNumBlocks(int count, int nTotalBlocks)
     else
     {
         if (strStatusBarWarnings.isEmpty())
-            progressBarLabel->setVisible(false);
+
+            //progressBarLabel->setText(tr(" Crypto-city.com"));
+            progressBarLabel->setPixmap(QIcon(":/images/ccicon").pixmap(147,32));
+            progressBarLabel->setVisible(true);
+            //progressBarLabel->setStyleSheet("QLabel { background-image: url(:images/ccicon.png); border: 0px solid grey; border-radius: 0px; padding: 0px; text-align: center; color: blue; width: 200px; margin-right: 5px; }");
+
 
         progressBar->setVisible(false);
         tooltip = tr("Downloaded %1 blocks of transaction history.").arg(count);
@@ -942,14 +959,6 @@ void BitcoinGUI::gotoVerifyMessageTab(QString addr)
         signVerifyMessageDialog->setAddress_VM(addr);
 }
 
-void BitcoinGUI::gotoReSourcesPage()
-{
-    resourcesAction->setChecked(true);
-    centralWidget->setCurrentWidget(resourcesPage);
-
-    exportAction->setEnabled(false);
-    disconnect(exportAction, SIGNAL(triggered()), 0, 0);
-}
 
 void BitcoinGUI::gotoBip38Tool()
 {
@@ -979,7 +988,7 @@ void BitcoinGUI::dropEvent(QDropEvent *event)
         if (nValidUrisFound)
             gotoSendCoinsPage();
         else
-            notificator->notify(Notificator::Warning, tr("URI handling"), tr("URI can not be parsed! This can be caused by an invalid HyperStake address or malformed URI parameters."));
+            notificator->notify(Notificator::Warning, tr("URI handling"), tr("URI can not be parsed! This can be caused by an invalid Element address or malformed URI parameters."));
     }
 
     event->acceptProposedAction();
@@ -994,7 +1003,7 @@ void BitcoinGUI::handleURI(QString strURI)
         gotoSendCoinsPage();
     }
     else
-        notificator->notify(Notificator::Warning, tr("URI handling"), tr("URI can not be parsed! This can be caused by an invalid HyperStake address or malformed URI parameters."));
+        notificator->notify(Notificator::Warning, tr("URI handling"), tr("URI can not be parsed! This can be caused by an invalid Element address or malformed URI parameters."));
 }
 
 void BitcoinGUI::setEncryptionStatus(int status)

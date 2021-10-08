@@ -1,5 +1,5 @@
-#ifndef HYPERSTAKE_SETVOTESDIALOG_H
-#define HYPERSTAKE_SETVOTESDIALOG_H
+#ifndef ELEMENT_SETVOTESDIALOG_H
+#define ELEMENT_SETVOTESDIALOG_H
 
 #include <QDialog>
 #include <QObject>
@@ -26,4 +26,4 @@ private:
     void Clear();
 };
 
-#endif //HYPERSTAKE_SETVOTESDIALOG_H
+#endif //ELEMENT_SETVOTESDIALOG_H

@@ -1508,7 +1508,7 @@ bool CWallet::CreateTransaction(const vector<pair<CScript, int64> >& vecSend, CW
  
                          scriptChange.SetDestination(vchPubKey.GetID());
 						
-						// change HyperStake to get rid of automatic generation of change address and instead send change back
+						// change Element to get rid of automatic generation of change address and instead send change back
 						
                      }
                     
@@ -1664,7 +1664,7 @@ bool CWallet::GetStakeWeight(const CKeyStore& keystore, uint64& nMinWeight, uint
 // ppcoin: create coin stake transaction
 bool CWallet::CreateCoinStake(const CKeyStore& keystore, unsigned int nBits, int64 nSearchInterval, CTransaction& txNew)
 {
-    //presstab HyperStake: return false if disablestake RPC is enabled
+    //presstab Element: return false if disablestake RPC is enabled
 	if(fDisableStake)
 		return false;
 	
@@ -1691,7 +1691,7 @@ bool CWallet::CreateCoinStake(const CKeyStore& keystore, unsigned int nBits, int
     if (nBalance <= nReserveBalance)
         return false;
 
-    // presstab HyperStake - Initialize as static and don't update the set on every run of CreateCoinStake() in order to lighten resource use
+    // presstab Element - Initialize as static and don't update the set on every run of CreateCoinStake() in order to lighten resource use
 	static std::set<pair<const CWalletTx*,unsigned int> > setStakeCoins;
 	static int64 nLastStakeSetUpdate = 0;
 
@@ -1788,7 +1788,7 @@ bool CWallet::CreateCoinStake(const CKeyStore& keystore, unsigned int nBits, int
 			vwtxPrev.push_back(pcoin.first);
 			txNew.vout.push_back(CTxOut(0, scriptPubKeyOut));
 			
-			//presstab HyperStake - calculate the total size of our new output including the stake reward so that we can use it to decide whether to split the stake outputs
+			//presstab Element - calculate the total size of our new output including the stake reward so that we can use it to decide whether to split the stake outputs
 			uint64 nCoinAge;
 			CTxDB txdb("r");
 			const CBlockIndex* pIndex0 = GetLastBlockIndex(pindexBest, false);
@@ -1796,7 +1796,7 @@ bool CWallet::CreateCoinStake(const CKeyStore& keystore, unsigned int nBits, int
 				return error("CreateCoinStake : failed to calculate coin age");
 			uint64 nTotalSize = pcoin.first->vout[pcoin.second].nValue + GetProofOfStakeReward(nCoinAge, nBits, txNew.nTime, pIndex0->nHeight);
 				
-			//presstab HyperStake - if MultiSend is set to send in coinstake we will add our outputs here (values asigned further down)
+			//presstab Element - if MultiSend is set to send in coinstake we will add our outputs here (values asigned further down)
 			if(fMultiSend && fMultiSendCoinStake)
 			{
 				for(unsigned int i = 0; i < vMultiSend.size(); i++)
@@ -1822,7 +1822,7 @@ bool CWallet::CreateCoinStake(const CKeyStore& keystore, unsigned int nBits, int
         return false;
 
 	if (pindexStart != pindexBest) return false;
-    if(fCombineDust) //presstab HyperStake - this combination code iterates through all of your outputs on successful coinstake, so its useful to have user be able to choose whether this is necessary
+    if(fCombineDust) //presstab Element - this combination code iterates through all of your outputs on successful coinstake, so its useful to have user be able to choose whether this is necessary
 	{
 		BOOST_FOREACH(PAIRTYPE(const CWalletTx*, unsigned int) pcoin, setStakeCoins)
 		{
@@ -1922,7 +1922,7 @@ bool CWallet::CreateCoinStake(const CKeyStore& keystore, unsigned int nBits, int
 }
 
 
-// hyperstake: complete construction of a proposal transaction
+// element: complete construction of a proposal transaction
 bool CWallet::FinalizeProposal(CTransaction& txProposal)
 {
     //! Choose coins to use
@@ -2456,7 +2456,7 @@ void CWallet::FixSpentCoins(int& nMismatchFound, int64& nBalanceInQuestion, int&
     {
         uint256 hash = pcoin->GetHash();
 		
-		// presstab HyperStake
+		// presstab Element
 		// This finds and deletes transactions that were never accepted by the network
 		// needs to be located above the readtxindex code or else it will not be triggered
 		if(!pcoin->IsConfirmedInMainChain() && (GetTime() - pcoin->GetTxTime()) > (60*10)) //give the tx 10 minutes before considering it failed

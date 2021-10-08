@@ -1,8 +1,8 @@
-// Copyright (c) 2017 The HyperStake Developers
+// Copyright (c) 2017 The Element Developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
-#ifndef HYPERSTAKE_VOTEOBJECT_H
-#define HYPERSTAKE_VOTEOBJECT_H
+#ifndef ELEMENT_VOTEOBJECT_H
+#define ELEMENT_VOTEOBJECT_H
 
 #include "serialize.h"
 #include "uint256.h"
@@ -93,4 +93,4 @@ public:
     uint32_t GetUnformattedVote() { return nChoice; }
 };
 
-#endif //HYPERSTAKE_VOTEOBJECT_H
+#endif //ELEMENT_VOTEOBJECT_H

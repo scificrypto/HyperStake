@@ -289,7 +289,7 @@ static bool GetKernelStakeModifier(uint256 hashBlockFrom, uint64& nStakeModifier
 //   a proof-of-work situation.
 //
 
-/** Presstab - HyperStake hashing
+/** Presstab - Element hashing
 I redesigned the hashing iteration in a few ways. 
 Code Reorginization - Instead of iterating the hashing in wallet.cpp, it is iterated in kernel.cpp inside of checkstakekernelhash, this allows
 the iteration to not need to initialize the variables for every iteration. This is also true for the stake modifier, which was previously
@@ -306,7 +306,7 @@ uint256 stakeHash(unsigned int nTimeTx, unsigned int nTxPrevTime, CDataStream ss
 	return Hash(ss.begin(), ss.end());
 }
 
-//HyperStake test hash vs target
+//Element test hash vs target
 bool stakeTargetHit(uint256 hashProofOfStake, unsigned int nAge, int64 nValueIn, CBigNum bnTargetPerCoinDay, CBigNum& bnCoinWeight)
 {	
 	//get the stake weight
@@ -337,7 +337,7 @@ bool CheckStakeKernelHash(unsigned int nBits, const CBlock& blockFrom, unsigned 
 	CBigNum bnTargetPerCoinDay;
 	bnTargetPerCoinDay.SetCompact(nBits);
 	
-	//grab stake modifier - HyperStake improves hashing by only grabbing this once per utxo
+	//grab stake modifier - Element improves hashing by only grabbing this once per utxo
 	uint64 nStakeModifier = 0;
 	int nStakeModifierHeight = 0;
 	int64 nStakeModifierTime = 0;

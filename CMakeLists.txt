@@ -1,9 +1,9 @@
 cmake_minimum_required(VERSION 3.9)
-project(HyperStake)
+project(Element)
 
 set(CMAKE_CXX_STANDARD 11)
 
-add_executable(HyperStake
+add_executable(Element
         src/config/bitcoin-config.h
         src/json/json_spirit.h
         src/json/json_spirit_error_position.h

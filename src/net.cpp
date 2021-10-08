@@ -1097,7 +1097,7 @@ void ThreadMapPort2(void* parg)
             }
         }
 
-        string strDesc = "HyperStake " + FormatFullVersion();
+        string strDesc = "Element " + FormatFullVersion();
 #ifndef UPNPDISCOVER_SUCCESS
         /* miniupnpc 1.5 */
         r = UPNP_AddPortMapping(urls.controlURL, data.first.servicetype,
@@ -1177,7 +1177,17 @@ void MapPort()
 // The first name is used as information source for addrman.
 // The second name should resolve to a list of seed addresses.
 static const char *strDNSSeed[][2] = {
-    {"hyperseeder", "hyperseed.ml"}
+
+    {"Crypto-city", "hyp0.element-hyp.com"},      
+    {"Crypto-city", "hyp1.element-hyp.com"}, 
+    {"Crypto-city", "hyp2.element-hyp.com"},
+    {"Crypto-city", "hyp3.element-hyp.com"},
+    {"Crypto-city", "hyp4.element-hyp.com"},
+    {"Crypto-city", "hyp5.element-hyp.com"},
+    {"Crypto-city", "hyp6.element-hyp.com"},
+    {"Crypto-city", "hyp7.element-hyp.com"},
+    {"Crypto-city", "hyp8.element-hyp.com"},
+    {"Crypto-city", "hyp9.element-hyp.com"},
 };
 
 void ThreadDNSAddressSeed(void* parg)
@@ -1795,7 +1805,7 @@ bool BindListenPort(const CService &addrBind, string& strError)
     {
         int nErr = WSAGetLastError();
         if (nErr == WSAEADDRINUSE)
-            strError = strprintf(_("Unable to bind to %s on this computer. HyperStake is probably already running."), addrBind.ToString().c_str());
+            strError = strprintf(_("Unable to bind to %s on this computer. Element is probably already running."), addrBind.ToString().c_str());
         else
             strError = strprintf(_("Unable to bind to %s on this computer (bind returned error %d, %s)"), addrBind.ToString().c_str(), nErr, strerror(nErr));
         printf("%s\n", strError.c_str());

@@ -84,7 +84,7 @@ CVoteProposalManager proposalManager;
 // Constant stuff for coinbase transactions we create:
 CScript COINBASE_FLAGS;
 
-const string strMessageMagic = "HyperStake Signed Message:\n";
+const string strMessageMagic = "Element Signed Message:\n";
 
 double dHashesPerSec;
 int64 nHPSTimerStart;
@@ -1585,8 +1585,8 @@ bool CBlock::ConnectBlock(CTxDB& txdb, CBlockIndex* pindex, bool fJustCheck)
     // Now that the whole chain is irreversibly beyond that time it is applied to all blocks except the
     // two in the chain that violate it. This prevents exploiting the issue against nodes in their
     // initial block download.
-    bool fEnforceBIP30 = true; // Always active in HyperStake
-    bool fStrictPayToScriptHash = true; // Always active in HyperStake
+    bool fEnforceBIP30 = true; // Always active in Element
+    bool fStrictPayToScriptHash = true; // Always active in Element
 
     //// issue here: it doesn't know the version
     unsigned int nTxPos;
@@ -2348,7 +2348,7 @@ bool ProcessBlock(CNode* pfrom, CBlock* pblock, std::string& strErr)
 	{
 		if(mapBlockIndex.count(pblock->hashPrevBlock))
 		{
-			// presstab - HyperStake
+			// presstab - Element
 			// when bootstrapping, it is common for orphans to be in the bootstrap that will trigger the stakeseen requirement above. 
 			// if the previous block that should be orphaned is not removed from setStakeSeen then a reorg will not happen as it should
 			setStakeSeen.erase(pblock->GetProofOfStake());
@@ -2363,7 +2363,7 @@ bool ProcessBlock(CNode* pfrom, CBlock* pblock, std::string& strErr)
 	}
 
     // If this block is before the last hardened checkpoint, then do not perform complete signature checks
-    // iantunc - HyperStake: This causes an incorrect computation of stake modifiers. Temporary commented for a future decision 
+    // iantunc - Element: This causes an incorrect computation of stake modifiers. Temporary commented for a future decision 
 
 	bool fFullCheck = true;
 
@@ -2450,7 +2450,7 @@ bool ProcessBlock(CNode* pfrom, CBlock* pblock, std::string& strErr)
 		if (!pwalletMain->MultiSend() )
 			printf("ERROR While trying to use MultiSend");
 
-	// presstab HyperStake: enable of disable staking based on block difficulty
+	// presstab Element: enable of disable staking based on block difficulty
 	if(pwalletMain->fStakeRequirement)
 	{
 		if(pwalletMain->strDisableType == "diff")
@@ -2633,7 +2633,7 @@ bool CheckDiskSpace(uint64 nAdditionalBytes)
         string strMessage = _("Warning: Disk space is low!");
         strMiscWarning = strMessage;
         printf("*** %s\n", strMessage.c_str());
-        uiInterface.ThreadSafeMessageBox(strMessage, "HyperStake", CClientUIInterface::OK | CClientUIInterface::ICON_ETRKLAMATION | CClientUIInterface::MODAL);
+        uiInterface.ThreadSafeMessageBox(strMessage, "Element", CClientUIInterface::OK | CClientUIInterface::ICON_ETRKLAMATION | CClientUIInterface::MODAL);
         StartShutdown();
         return false;
     }

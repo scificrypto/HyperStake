@@ -26,7 +26,7 @@ bin_PROGRAMS =
 TESTS =
 
 if BUILD_BITCOIND
-  bin_PROGRAMS += hyperstaked
+  bin_PROGRAMS += elementd
 endif
 
 .PHONY: FORCE
@@ -187,8 +187,8 @@ libbitcoin_util_a_SOURCES = \
 nodist_libbitcoin_util_a_SOURCES = $(srcdir)/obj/build.h
 #
 
-# hyperstaked binary #
-hyperstaked_LDADD = \
+# elementd binary #
+elementd_LDADD = \
   $(LIBBITCOIN_SERVER) \
   $(LIBBITCOIN_COMMON) \
   $(LIBBITCOIN_UTIL) \
@@ -197,20 +197,20 @@ hyperstaked_LDADD = \
   $(LIBMEMENV)
 
 if ENABLE_WALLET
-hyperstaked_LDADD += libbitcoin_wallet.a
+elementd_LDADD += libbitcoin_wallet.a
 endif
-hyperstaked_SOURCES = \
+elementd_SOURCES = \
   bitcoind.cpp
 
 #
 
 if TARGET_WINDOWS
-hyperstaked_SOURCES += bitcoind-res.rc
+elementd_SOURCES += bitcoind-res.rc
 endif
 
-hyperstaked_LDADD += $(BOOST_LIBS) $(BDB_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(MINIUPNPC_LIBS)
-hyperstaked_CPPFLAGS = $(BITCOIN_INCLUDES)
-hyperstaked_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+elementd_LDADD += $(BOOST_LIBS) $(BDB_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(MINIUPNPC_LIBS)
+elementd_CPPFLAGS = $(BITCOIN_INCLUDES)
+elementd_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
 
 
 CLEANFILES = *.gcda *.gcno

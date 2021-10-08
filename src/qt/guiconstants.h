@@ -30,7 +30,7 @@ static const int MAX_URI_LENGTH = 255;
 /* QRCodeDialog -- size of exported QR Code image */
 #define EXPORT_IMAGE_SIZE 256
 
-#define QAPP_APP_NAME_DEFAULT "HyperStake-Qt"
-#define QAPP_APP_NAME_TESTNET "HyperStake-Qt-testnet"
+#define QAPP_APP_NAME_DEFAULT "Element-Qt"
+#define QAPP_APP_NAME_TESTNET "Element-Qt-testnet"
 
 #endif // GUICONSTANTS_H
