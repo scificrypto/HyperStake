@@ -25,6 +25,7 @@ help further advance the field of crypto-currency.
 Setup
 -----
 Unpack the files into a directory and run:<br/>
+<br/>
  bin/32/elementd (headless, 32-bit)<br/>
  bin/64/elementd (headless, 64-bit)<br/>
 
