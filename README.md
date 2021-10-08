@@ -1,8 +1,10 @@
-# Element
+# Element (HYP)
 
-Copyright (c) 2013-2017 Element Developers
+Copyright (c) 2021 Element (HYP) Developers
+Copyright (c) 2013-2021 HyperStake (HYP) Developers
 Copyright (c) 2013 NovaCoin Developers
 Copyright (c) 2011-2012 Bitcoin Developers
+
 Distributed under the MIT/X11 software license, see the accompanying
 file license.txt or http://www.opensource.org/licenses/mit-license.php.
 This product includes software developed by the OpenSSL Project for use in
@@ -12,8 +14,9 @@ cryptographic software written by Eric Young (eay@cryptsoft.com).
 
 Intro
 -----
-Element is a free open source project derived from NovaCoin, with
-the goal of providing a long-term energy-efficient Proof of Stake based crypto-currency.
+Element (HYP) is the facelift of HyperStake (HYP). It is 
+is a free open source project derived from NovaCoin, with
+the goal of providing a long-term energy-efficient Proof of Stake (PoS) based crypto-currency.
 Built on the foundation of Bitcoin and NovaCoin, innovations such as proof-of-stake
 help further advance the field of crypto-currency.
 
@@ -47,7 +50,7 @@ for help and more information.
 
 Build Instructions (Linux)
 -------
-### Dependencies required for Element with or without GUI:
+### Dependencies required for Element (HYP) with or without GUI:
 `sudo apt-get install build-essential libtool autotools-dev autoconf pkg-config libssl-dev libboost-all-dev libdb5.3-dev libdb5.3++-dev libminiupnpc-dev automake`
 
 `./autogen.sh`
