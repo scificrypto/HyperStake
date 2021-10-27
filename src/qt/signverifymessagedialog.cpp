@@ -14,6 +14,7 @@
 #include <vector>
 
 #include <QClipboard>
+#include <QtWidgets>
 
 SignVerifyMessageDialog::SignVerifyMessageDialog(QWidget *parent) :
     QDialog(parent),
