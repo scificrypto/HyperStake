@@ -97,7 +97,12 @@ BitcoinGUI::BitcoinGUI(const NetworkStyle * networkStyle, QWidget *parent):
     setFixedSize(765,710);
     //Creating font directory and establishing global font preference
     QFontDatabase::addApplicationFont(":/fonts/Lato");
+#ifdef Q_OS_MAC 
+    QFont font("Lato", 12);
+#else
     QFont font("Lato", 10);
+#endif
+
     QApplication::setFont(font);
     //QApplication::setStyleSheet ( const QString & sheet )
 
@@ -487,7 +492,13 @@ void BitcoinGUI::createToolBars()
     QToolBar *toolbar = addToolBar(tr("Tabs toolbar"));
     toolbar->setObjectName("toolbar");
     toolbar->setMovable( false );
+#ifdef Q_OS_MAC 
+    toolbar->setStyleSheet("#toolbar { padding-left: 10px; border:0px; height:100%; text-align: center;} QToolBar QToolButton { margin: 0px; min-width:140px; max-width:140px; min-height:30px; max-height:30px; text-align: center; }");
+#else
     toolbar->setStyleSheet("#toolbar { padding-left: 10px; border:0px; height:100%; text-align: center;} QToolBar QToolButton { margin: 0px; min-width:146px; max-width:146px; min-height:30px; max-height:30px; text-align: center; }");
+#endif
+
+
     //toolbar->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
     
     //below replaces the icons and text menu labels for text only
