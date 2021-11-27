@@ -53,7 +53,7 @@ See the element site:
   https://www.crypto-city.com/index.php/element-hyp/info
 for help and more information.
 
-Build Instructions (Linux)0
+Build Instructions (Linux)
 -------
 ### If definitely Ubuntu 18.04 LTS (non GUI):
 `sudo add-apt-repository ppa:bitcoin/bitcoin`
