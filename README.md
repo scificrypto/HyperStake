@@ -53,8 +53,15 @@ See the element site:
   https://www.crypto-city.com/index.php/element-hyp/info
 for help and more information.
 
-Build Instructions (Linux)
+Build Instructions (Linux)0
 -------
+### If definitely Ubuntu 18.04 LTS (non GUI):
+`sudo add-apt-repository ppa:bitcoin/bitcoin`
+`sudo apt-get update`
+`sudo apt-get install build-essential libtool autotools-dev autoconf pkg-config libssl-dev libboost-all-dev libdb4.8-dev libdb4.8++-dev libminiupnpc-dev automake`
+
+### Else:
+
 ### Dependencies required for Element (HYP) with or without GUI:
 `sudo apt-get install build-essential libtool autotools-dev autoconf pkg-config libssl-dev libboost-all-dev libdb5.3-dev libdb5.3++-dev libminiupnpc-dev automake`
 
