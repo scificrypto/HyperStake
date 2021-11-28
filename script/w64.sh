@@ -1,28 +1,29 @@
-#!/bin/bash
-#------------Prepare the environment
-echo @@@
-echo @@@"Installing Dependecies"
-echo @@@
+#tested in ubuntu 20.04 and we need be able to compile with j10 or adapt
+#------------------------------first we need update system
+apt-get update -y
+apt-get ugrade -y
+#------------------------------install dependencies
+apt install git
+sudo apt-get install build-essential libtool bsdmainutils autotools-dev autoconf pkg-config automake python3 -y
+sudo apt-get install libgmp-dev libevent-dev libboost-all-dev libsodium-dev cargo -y
 sudo apt-get install software-properties-common -y
 sudo add-apt-repository ppa:pivx/pivx -y
 sudo apt-get update -y
-sudo apt-get install -y -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" make software-properties-common \
-build-essential libtool autoconf  libboost-dev libboost-chrono-dev libboost-filesystem-dev libboost-program-options-dev \
-libboost-system-dev libboost-test-dev libboost-thread-dev sudo automake git wget curl libdb4.8-dev bsdmainutils libdb4.8++-dev \
-libminiupnpc-dev libgmp3-dev ufw pkg-config libevent-dev  libdb5.3++ unzip libzmq5 libssl-dev
-sudo apt install -y curl gcc-mingw-w64-i686 gcc-mingw-w64-base  imagemagick librsvg2-bin g++-mingw-w64-x86-64 nsis bc  binutils-arm-linux-gnueabihf g++-7-multilib gcc-7-multilib binutils-gold git pkg-config autoconf libtool automake bsdmainutils ca-certificates python g++ mingw-w64 g++-mingw-w64 nsis zip rename librsvg2-bin libtiff-tools cmake imagemagick libcap-dev libz-dev libbz2-dev python-dev python-setuptools fonts-tuffy
-sudo apt-get install g++-mingw-w64-i686 -y
-mkdir -p ~/release
-cd .. && cd depends/
-
-#------------Compile w64 depedencies
-sudo make HOST=x86_64-w64-mingw32 -j8
+sudo apt-get install libdb4.8-dev libdb4.8++-dev -y
+sudo apt install libminiupnpc-dev libnatpmp-dev -y
+sudo apt-get install libzmq3-dev -y
+sudo apt-get install libqt5gui5 libqt5core5a libqt5dbus5 libqt5svg5-dev libqt5charts5-dev qttools5-dev qttools5-dev-tools libqrencode-dev -y
+sudo apt install build-essential libtool autotools-dev automake pkg-config bsdmainutils curl git -y
+sudo apt install g++-mingw-w64-x86-64 -y
+#-------------------------------we need choose the * 1 (/usr/bin/x86_64-w64-mingw32-g++-posix)
+sudo update-alternatives --config x86_64-w64-mingw32-g++
+#-------------------------------clone the repo
+git clone https://github.com/Crypto-city/Element-HYP.git
+cd Element-HYP/depends/
+#--------------------------------compile deps
+make HOST=x86_64-w64-mingw32 -j10
 cd ..
-
-#------------Compile w64 core
-sudo make clean
-sudo ./autogen.sh && sudo ./configure --prefix=`pwd`/depends/x86_64-w64-mingw32 --disable-tests && sudo make -j8
-
-#------------Make install
-sudo make install DESTDIR=/root/release/Element-HYP-w64/ -j8
-echo "Finished, you could find the release in /root/release/Element-HYP-w64"
+#--------------------------------compile cores
+./autogen.sh
+CONFIG_SITE=$PWD/depends/x86_64-w64-mingw32/share/config.site ./configure --prefix=/
+sudo make -j10
