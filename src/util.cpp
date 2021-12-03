@@ -1324,7 +1324,7 @@ void AddTimeData(const CNetAddr& ip, int64 nTime)
             printf("|  ");
         }
         if (nNodesOffset != INT64_MAX)
-              printf("nNodesOffset = %+" PRId64 "  (%+" PRId64 " minutes)\n", nNodesOffset, nNodesOffset/60); 
+              printf("nNodesOffset = %+lld  (%+lld minutes)\n", nNodesOffset, nNodesOffset/60); 
     }
 }
 
